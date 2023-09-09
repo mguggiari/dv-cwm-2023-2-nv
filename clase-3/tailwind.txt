@@ -64,3 +64,5 @@ Nota: Esto supone que van a trabajar con los archivos en la carpeta 'src'.
 ## Usando Tailwind
 Si hicimos todo bien, deberíamos poder arrancar el proyecto y ver que todos los estilos básicos de una
 web se fueron. Es decir, Tailwind por defecto elimina todos los márgenes, paddings, etc, entre otras cosas.
+//https://tailwind-elements.com/
+//https://tailwindcomponents.com/cheatsheet/

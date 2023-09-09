@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Intro a Firestore</title>
+</head>
+<body>
+    <h1>Intro a Firestore</h1>
+
+    <p>Leyendo los mensajes del chat tiempo real</p>
+
+    <form action="#" id="form-chat">
+        <div>
+            <label for="usuario">Usuario</label>
+            <input type="text" id="usuario">
+        </div>
+        <div>
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje"></textarea>
+        </div>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <div id="salida"></div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, addDoc } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js"
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAPaJFQwcemxwG-X-FAB7Vj5RDkrh9DR6Q",
+            authDomain: "cwm-2023-2-noche-v-d977a.firebaseapp.com",
+            projectId: "cwm-2023-2-noche-v-d977a",
+            storageBucket: "cwm-2023-2-noche-v-d977a.appspot.com",
+            messagingSenderId: "552476637088",
+            appId: "1:552476637088:web:bedb4257e815abc7dd56c5"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        //obtener la instancia de firestore
+        const db = getFirestore(app);
+
+        const refChat = collection(db, 'chats');
+
+        const salida = document.querySelector('#salida');
+        const formChat = document.querySelector('#form-chat');
+        const usuario = document.querySelector('#usuario');
+        const mensaje = document.querySelector('#mensaje');
+
+        formChat.addEventListener('submit', function(ev) {
+            ev.preventDefault();
+
+            const data = {
+                usuario: usuario.value,
+                mensaje: mensaje.value,
+            }
+
+            addDoc(refChat, data)
+                .then(()=>{
+                    usuario.value = '';
+                    mensaje.value = '';
+                });
+        });
+
+        onSnapshot(refChat, snapshot =>{
+            salida.innerHTML = snapshot.docs.map(doc => 
+                    `<div>
+                        <div><b>Usuario:</b> ${doc.data().usuario}</div>
+                        <div><b>Mensaje:</b> ${doc.data().mensaje}</div>
+                    </div>`
+                ).join('');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Intro a Firestore</title>
+</head>
+<body>
+    <h1>Intro a Firestore</h1>
+
+    <p>Leyendo los mensajes del chat</p>
+
+    <div id="salida"></div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js"
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAPaJFQwcemxwG-X-FAB7Vj5RDkrh9DR6Q",
+            authDomain: "cwm-2023-2-noche-v-d977a.firebaseapp.com",
+            projectId: "cwm-2023-2-noche-v-d977a",
+            storageBucket: "cwm-2023-2-noche-v-d977a.appspot.com",
+            messagingSenderId: "552476637088",
+            appId: "1:552476637088:web:bedb4257e815abc7dd56c5"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        //obtener la instancia de firestore
+        const db = getFirestore(app);
+
+        //leyendo datos de firestore
+        //esta funcion recibe dos parametros. 1. la referencia de la base de datos. 2. un string con el path/nombre de la collection. devuelve una promesa que se resuelve con un snapshot de todos los documentos obtenidos.
+        // una promesa es un valor que en algun momento en el futuro va a estar disponible. ese valor puede ser vacio, puede tener un resultado o un error. y que se utiliza por sobre todo en prog asincronica.
+        // los snapshots son objetos que contienen la info de la collection o query que hayamos pedido, tal cual estaban en el momento de completarse la lectura.
+
+        const refChat = collection(db, 'chats');
+
+        const salida = document.querySelector('#salida');
+
+        getDocs(refChat)
+            .then(snapshot => {
+                //console.log(snapshot);
+                // console.log(snapshot.docs);
+                salida.innerHTML = '';
+                //probando con foreach
+                /*snapshot.forEach(doc => {
+                    //pedimos los datos de un documento y para el id pedimos .id
+                    // console.log("El documento con id ", doc.id ," tiene los siguientes datos: ", doc.data());
+                    //console.log(doc.data());
+                    salida.innerHTML += `
+                        <div>
+                            <div><b>Usuario:</b> ${doc.data().usuario}</div>
+                            <div><b>Mensaje:</b> ${doc.data().mensaje}</div>
+                        </div>
+                    `
+                })*/
+                //probando con docs
+                salida.innerHTML = snapshot.docs.map(doc => 
+                    `<div>
+                        <div><b>Usuario:</b> ${doc.data().usuario}</div>
+                        <div><b>Mensaje:</b> ${doc.data().mensaje}</div>
+                    </div>`
+                ).join('');
+            }); 
+    </script>
+</body>
+</html>

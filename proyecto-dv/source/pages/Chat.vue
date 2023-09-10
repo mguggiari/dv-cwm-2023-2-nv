@@ -1,33 +1,51 @@
 <script>
-    import {chatArmadoMensajes, chatGuardarMensaje} from '../services/chat.js';
-    export default {
-        name: "Chat",
-        data() {
-            return {
-                mensajes: [],
-                nuevoMensaje: {
-                    usuario: '',
-                    mensaje: ''
-                }
+import {chatArmadoMensajes, chatGuardarMensaje} from '../services/chat.js';
+import { dateToString } from '../helpers/date.js';
+import PrimaryButton from '../components/PrimaryButton.vue';
+import PrimaryInput from '../components/PrimaryInput.vue';
+import PrimaryTextarea from '../components/PrimaryTextarea.vue';
+import Loader from '../components/Loader.vue';
+
+export default {
+    name: "Chat",
+    components: { PrimaryButton, PrimaryInput, PrimaryTextarea, Loader },
+    data() {
+        return {
+            mensajesCargando: true,
+            mensajes: [],
+            nuevoMensajeGuardado: false,
+            nuevoMensaje: {
+                usuario: '',
+                mensaje: ''
             }
+        };
+    },
+    methods: {
+        enviarMensaje() {
+            if (this.nuevoMensajeGuardado) return;
+
+            this.nuevoMensajeGuardado = true;
+            chatGuardarMensaje({
+                usuario: this.nuevoMensaje.usuario,
+                mensaje: this.nuevoMensaje.mensaje
+            })
+                .then(() => {
+                    this.nuevoMensaje.mensaje = '';
+                    this.nuevoMensajeGuardado = false;
+                });
         },
-        methods: {
-            enviarMensaje() {
-                chatGuardarMensaje({
-                    usuario: this.nuevoMensaje.usuario,
-                    mensaje: this.nuevoMensaje.mensaje
-                })
-                    .then(() => {
-                        this.nuevoMensaje.mensaje = '';
-                    });
-            }
-        },
-        mounted() {
-            chatArmadoMensajes(mensajes => {
-                this.mensajes = mensajes;
-            });
+        fechaFormateada(date) {
+            return dateToString(date);
         }
-    };
+    },
+    mounted() {
+        this.mensajesCargando = true;
+        chatArmadoMensajes(mensajes => {
+            this.mensajes = mensajes;
+            this.mensajesCargando = false;
+        });
+    },
+};
 </script>
 
 <template>
@@ -39,21 +57,38 @@
     </p>
     <div class="flex justify-between gap-4">
         <div>
-            <div  class="mb-2"  v-for="mensaje in mensajes" >
-                <div><b>Usuario</b>{{mensaje.usuario}}</div>
-                <div><b>Mensaje</b>{{mensaje.mensaje}}</div>
-            </div>
+            <template v-if="!mensajesCargando">
+                <div v-for="mensaje in mensajes" :key="mensaje.id" class="mb-2">
+                    <div><b class="mr-1.5">Usuario:</b>{{ mensaje.usuario }}</div>
+                    <div><b  class="mr-1.5">Mensaje:</b>{{ mensaje.mensaje }}</div>
+                    <div class="text-right"> {{ fechaFormateada(mensaje.created_at) }}</div>
+                </div>
+            </template>
+            <template v-else>
+                <Loader />
+            </template>
         </div>
         <form action="#" @submit.prevent="enviarMensaje">
             <div class="mb-2">
+                <!-- PASAR EL LABEL Y TITULOS A COMPONENTES -->
                 <label class="block font-bold mb-2" for="usuario">Usuario</label>
-                <input class="w-full p-2 border border-slate-400 rounded" type="text" id="usuario" v-model="nuevoMensaje.usuario">
+                <PrimaryInput 
+                    type="text"
+                    id="usuario"
+                    v-model="nuevoMensaje.usuario" 
+                />
             </div>
             <div  class="mb-2">
                 <label class="block font-bold mb-2"  for="mensaje">Mensaje</label>
-                <textarea id="mensaje" class="w-full border border-slate-400 rounded" v-model="nuevoMensaje.mensaje"></textarea>
+                <PrimaryTextarea 
+                    id="mensaje"  
+                    v-model="nuevoMensaje.mensaje"
+                >
+                </PrimaryTextarea>
             </div>
-            <button class="bg-cyan-900 text-white p-2 rounded w-full" type="submit">Enviar</button>
+            <PrimaryButton 
+                :loading="nuevoMensajeGuardado"
+            />
         </form>
     </div>
     <div id="salida"></div>

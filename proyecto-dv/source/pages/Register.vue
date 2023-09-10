@@ -1,6 +1,9 @@
 <script>
+import PrimaryButton from '../components/PrimaryButton.vue';
+
 export default {
     name: "Register",
+    components: { PrimaryButton }
 };
 </script>
 <template>
@@ -16,6 +19,6 @@ export default {
             <label for="password">Contraseña</label>
             <input type="password" id="password">
         </div>
-        <button type="submit">Crear cuenta</button>
+        <PrimaryButton>Registrarme</PrimaryButton>
     </form>
 </template>

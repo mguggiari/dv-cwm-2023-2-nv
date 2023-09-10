@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* loader */
 .loader {
     display: inline-block;
     width: 80px;
@@ -15,8 +16,8 @@
     height: 64px;
     margin: 8px;
     border-radius: 50%;
-    border: 6px solid #999;
-    border-color: #999 transparent #999 transparent;
+    border: 6px solid #eaeaae;
+    border-color: #eaeaae transparent #eaeaae transparent;
     animation: loader 1.2s linear infinite;
 }
 

@@ -47,49 +47,40 @@ export default {
     },
 };
 </script>
-
 <template>
-    <h1 class="text-3xl mb-4 font-bold">
-        Intro a Firestore
-    </h1>
-    <p class="mb-3">
-        Leyendo los mensajes del chat tiempo real
-    </p>
-    <div class="flex justify-between gap-4">
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-3xl mb-4 font-bold">Chat público</h1>
+      <p class="mb-3">Aquí podrás ver las conversaciones de la comunidad</p>
+      <div class="flex justify-between gap-4">
         <div>
-            <template v-if="!mensajesCargando">
-                <div v-for="mensaje in mensajes" :key="mensaje.id" class="mb-2">
-                    <div><b class="mr-1.5">Usuario:</b>{{ mensaje.usuario }}</div>
-                    <div><b  class="mr-1.5">Mensaje:</b>{{ mensaje.mensaje }}</div>
-                    <div class="text-right"> {{ fechaFormateada(mensaje.created_at) }}</div>
-                </div>
-            </template>
-            <template v-else>
-                <Loader />
-            </template>
+          <template v-if="!mensajesCargando">
+            <div v-for="mensaje in mensajes" :key="mensaje.id" class="mb-2">
+              <div><b class="mr-1.5">Usuario:</b>{{ mensaje.usuario }}</div>
+              <div><b class="mr-1.5">Mensaje:</b>{{ mensaje.mensaje }}</div>
+              <div class="text-right">{{ fechaFormateada(mensaje.created_at) }}</div>
+            </div>
+          </template>
+          <template v-else>
+            <Loader />
+          </template>
         </div>
-        <form action="#" @submit.prevent="enviarMensaje">
+        <div class="shadow-md rounded-md p-4">
+          <form action="#" @submit.prevent="enviarMensaje">
             <div class="mb-2">
-                <!-- PASAR EL LABEL Y TITULOS A COMPONENTES -->
-                <label class="block font-bold mb-2" for="usuario">Usuario</label>
-                <PrimaryInput 
-                    type="text"
-                    id="usuario"
-                    v-model="nuevoMensaje.usuario" 
-                />
+              <!-- PASAR EL LABEL Y TITULOS A COMPONENTES -->
+              <label class="block font-bold mb-2" for="usuario">Usuario</label>
+              <PrimaryInput type="text" id="usuario" v-model="nuevoMensaje.usuario" />
             </div>
-            <div  class="mb-2">
-                <label class="block font-bold mb-2"  for="mensaje">Mensaje</label>
-                <PrimaryTextarea 
-                    id="mensaje"  
-                    v-model="nuevoMensaje.mensaje"
-                >
-                </PrimaryTextarea>
+            <div class="mb-2">
+              <label class="block font-bold mb-2" for="mensaje">Mensaje</label>
+              <PrimaryTextarea id="mensaje" v-model="nuevoMensaje.mensaje">
+              </PrimaryTextarea>
             </div>
-            <PrimaryButton 
-                :loading="nuevoMensajeGuardado"
-            />
-        </form>
+            <PrimaryButton :loading="nuevoMensajeGuardado" />
+          </form>
+        </div>
+      </div>
+      <div id="salida"></div>
     </div>
-    <div id="salida"></div>
-</template>
+  </template>
+  

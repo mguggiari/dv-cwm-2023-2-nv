@@ -10,7 +10,7 @@ export default {
 <template>
     <header class="flex p-4 gap-8 items-center bg-neutral-200">
         <div>
-            <p class="text-xl">Aca nombre de la pagina</p>
+            <p class="text-xl">EnglishCourse</p>
         </div>
         <nav>
             <ul class="flex gap-4">
@@ -18,7 +18,7 @@ export default {
                     <router-link to="/">Inicio</router-link>
                 </li>
                 <li>
-                    <router-link to="/sobre-nosotros">Sobre Nosotros</router-link>
+                    <router-link to="/cursos">Cursos</router-link>
                 </li>
                 <li>
                     <router-link to="/chat">Chat</router-link>
@@ -32,7 +32,7 @@ export default {
             </ul>
         </nav>
     </header>
-    <div class="container h-full m-auto p-4">
+    <div>
         <router-view></router-view>
     </div>
     <footer class="flex justify-center h-[100px] items-center text-black bg-orange-300">

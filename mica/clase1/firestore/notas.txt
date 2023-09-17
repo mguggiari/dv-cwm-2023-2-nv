@@ -1,4 +1,0 @@
-FLEX-GRID
-flex esta creado con la idea de ordenar elementos en un eje en una linea. y grid esta pensado para ordenar elementos en una grilla 
-dos columnas -> flex 
-grid filas y columnas

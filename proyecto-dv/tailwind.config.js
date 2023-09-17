@@ -2,12 +2,12 @@
 export default {
   content: [
     "./index.html",
-    "./source/**/*.{vue,js,ts,jsx,tsx}",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       gridTemplateRows: {
-        layout: "64px 1fr 100px",
+        layout: '64px 1fr 100px',
       },
     },
   },

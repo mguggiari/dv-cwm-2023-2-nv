@@ -15,13 +15,10 @@ export function login ({email, password}) {
     return signInWithEmailAndPassword(auth, email, password)
         .then(userCredentials => {
             //console.log("[auth.js]sesion iniciada.", userCredentials)
-            userData = {
+            setUserData({
                 id: userCredentials.user.uid,
                 email: userCredentials.user.email
-            };
-
-            notifyAll();
-
+            });
             return {...userData};
         })
         .catch(error => {
@@ -37,11 +34,7 @@ export function login ({email, password}) {
  */
 export function logout() {
     const promise = signOut(auth);
-    userData = {
-        id: null,
-        email: null
-    }
-    notifyAll();
+    clearUserData();
     return promise;
 }
 
@@ -69,6 +62,20 @@ function notify(observer) {
     observer({...userData});
 }
 
-export function getUserData(){
-    return {...userData};
+/**
+ * @param {{id: null|string, email: null|string}} newData
+ */
+function setUserData(newData){
+    userData = {
+        ...userData,
+        ...newData
+    }
+    notifyAll();
+}
+
+function clearUserData() {
+    setUserData({
+        id: null,
+        email: null
+    });
 }

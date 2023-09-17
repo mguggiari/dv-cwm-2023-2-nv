@@ -1,3 +1,23 @@
+<script>
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faChalkboard, faBook, faComments, faCertificate } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+library.add(faChalkboard, faBook, faComments, faCertificate);
+
+export default {
+  name: "Home",
+  methods: {
+    getImagenUrl(nombreImagen) {
+      return `/imagenes/${nombreImagen}`;
+    },
+  },
+  components: {
+    FontAwesomeIcon,
+  },
+};
+</script>
+
 <template>
   <div>
     <!-- Banner principal -->
@@ -59,34 +79,12 @@
     </div>
   </div>
 </template>
-
-<script>
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faChalkboard, faBook, faComments, faCertificate } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-
-library.add(faChalkboard, faBook, faComments, faCertificate);
-
-export default {
-  name: "Home",
-  methods: {
-    getImagenUrl(nombreImagen) {
-      return `/imagenes/${nombreImagen}`;
-    },
-  },
-  components: {
-    FontAwesomeIcon,
-  },
-};
-</script>
-
 <style>
 .margenes1{
 
   margin-top: 50px;
   box-shadow: 0 0 10px rgba(115, 115, 115, 0.5);
 }
-
 .margenes2{
 
   margin-top: 50px;

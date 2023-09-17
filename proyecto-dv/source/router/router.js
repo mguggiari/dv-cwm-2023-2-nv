@@ -7,7 +7,7 @@ import {createRouter, createWebHistory} from 'vue-router';
 
 const routes = [
     { path: '/',               component: Home },
-    { path: '/cursos', component: Cursos },
+    { path: '/cursos',         component: Cursos },
     { path: '/registro',       component: Register },
     { path: '/iniciar-sesion', component: Login },
     { path: '/chat',           component: Chat },

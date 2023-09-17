@@ -1,3 +1,14 @@
+<script>
+export default {
+  name: "Cursos",
+  methods: {
+    getImagenUrl(nombreImagen) {
+      return `/imagenes/${nombreImagen}`;
+    },
+  },
+};
+</script>
+
 <template>
     <div>
       <!-- Banner principal -->
@@ -42,14 +53,4 @@
     </div>
   </template>
   
-  <script>
-  export default {
-    name: "Cursos",
-    methods: {
-      getImagenUrl(nombreImagen) {
-        return `/imagenes/${nombreImagen}`;
-      },
-    },
-  };
-  </script>
   

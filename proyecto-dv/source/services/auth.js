@@ -1,11 +1,29 @@
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 
 let userData = {
     id: null,
-    email: null
+    email: null,
+    displayName: null,
 }
 let observers = [];
+
+if(localStorage.getItem('user')){
+    userData = JSON.parse(localStorage.getItem('user'));
+}
+
+onAuthStateChanged(auth,user => {
+    if(user){
+        setUserData({
+            id: user.uid,
+            email: user.email,
+        });
+        localStogare.setItem('user', JSON.stringify(userData));
+    }else{
+        clearUserData();
+        localStorage.removeItem('user')
+    }
+})
 
 /**
  * @param {{email: string, password: string}} user 
@@ -78,4 +96,9 @@ function clearUserData() {
         id: null,
         email: null
     });
+}
+
+export function getUserData()
+{
+    return {...userData};
 }

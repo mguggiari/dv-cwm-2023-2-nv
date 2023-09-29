@@ -53,7 +53,7 @@ export default {
                 </template>
                 <template v-else>
                     <li>
-                    <router-link to="/iniciar-sesion">Mi Perfil</router-link>
+                    <router-link to="/perfil">Mi Perfil</router-link>
                     </li>
                     <li>
                         <form action="" @submit.prevent="handleLogout">

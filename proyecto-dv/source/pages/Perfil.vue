@@ -4,7 +4,7 @@
 
 <template>
   <h1> Mi perfil </h1>
-  </template>
+</template>
 
 <!-- <script>
 import {subscribeToAuthChanges, updateUserProfile} from "../services/auth.js";

@@ -34,19 +34,25 @@ export default {
 </script>
 
 <template>
-    <div class="container mx-auto px-4 py-8">
-      <h1 class="text-3xl mb-4 font-bold">Iniciar sesión</h1>
-      
-      <form action="#" @submit.prevent="iniciarSesion">
-        <div class="mb-4">
-          <label for="email" class="block font-bold mb-2" >Email</label>
-          <input type="email" id="email" v-model="form.email" class="w-full px-4 py-2 border rounded-md">
-        </div>
-        <div class="mb-4">
-          <label for="password" class="block font-bold mb-2">Contraseña</label>
-          <input type="password" id="password" v-model="form.password" class="w-full px-4 py-2 border rounded-md">
-        </div>
-        <PrimaryButton>Iniciar Sesión</PrimaryButton>
-      </form>
+  <section>
+    <div class="px-4 py-20 mx-auto max-w-7xl">
+      <div class="w-full px-0 pt-5 pb-6 mx-auto mt-4 mb-0 space-y-4 bg-transparent border-0 border-gray-200 rounded-lg md:bg-white md:border sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12 md:px-6 sm:mt-8 sm:mb-5">
+        <h1 class="mb-5 text-xl font-light text-left text-gray-800 sm:text-center">Log in to your account</h1>
+        <form action="#" @submit.prevent="iniciarSesion" class="pb-1 space-y-4">
+          <label class="block">
+            <span class="block mb-1 text-xs font-medium text-gray-700">Your Email</span>
+            <input class="form-input" type="email" placeholder="Ex. james@bond.com" inputmode="email" required />
+          </label>
+          <label class="block">
+            <span class="block mb-1 text-xs font-medium text-gray-700">Your Password</span>
+            <input class="form-input" type="password" placeholder="••••••••" required />
+          </label>
+          <PrimaryButton>Iniciar Sesión</PrimaryButton>
+        </form>
+      </div>
+      <p class="mb-4 space-y-2 text-sm text-left text-gray-600 sm:text-center sm:space-y-0">
+        <a href="/registro" class="w-full btn btn-sm btn-link sm:w-auto">Create an account</a>
+      </p>
     </div>
-  </template>
+  </section>
+</template>

@@ -4,6 +4,7 @@ import Register from './../pages/Register.vue';
 import Login from './../pages/Login.vue';
 import Chat from './../pages/Chat.vue';
 import Perfil from './../pages/Perfil.vue';
+import Error from './../pages/404.vue';
 import {createRouter, createWebHistory} from 'vue-router';
 
 const routes = [
@@ -13,7 +14,7 @@ const routes = [
     { path: '/iniciar-sesion', component: Login },
     { path: '/chat',           component: Chat },
     { path: '/perfil',         component: Perfil },
-
+    { path: '/404',            component: Error },
 ];
 
 const router = createRouter({

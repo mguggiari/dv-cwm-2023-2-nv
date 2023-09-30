@@ -27,7 +27,7 @@ export default {
 </script>
 
 <template>
-    <header class="flex p-4 gap-8 items-center bg-neutral-200">
+    <header class="bg-neutral-200">
         <div>
             <p class="text-xl">EnglishCourse</p>
         </div>
@@ -64,6 +64,8 @@ export default {
             </ul>
         </nav>
     </header>
+
+
     <div>
         <router-view></router-view>
     </div>
@@ -71,5 +73,5 @@ export default {
         <p class="p-4">
             Foter
         </p>
-    </footer>
+    </footer> 
 </template>

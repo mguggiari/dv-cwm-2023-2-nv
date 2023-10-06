@@ -10,6 +10,9 @@ export default {
 </script>
 
 <template>
+     <div class="bg-blue-500">
+      <img :src="getImagenUrl('banners2.png')" alt="Banner principal" class="w-full" />//aca tb te dejo el banner para ponerle el texto arriba
+    </div>
   <section>
     <div class="pb-64 bg-gray-100">
       <div class="max-w-7xl px-4 pt-20 mx-auto text-center sm:text-left">
@@ -19,8 +22,11 @@ export default {
     </div>
     <div class="max-w-7xl pb-20 mx-auto -mt-48">
       <div class="grid grid-cols-1 gap-16 lg:grid-cols-3 sm:gap-8">
-        <div class="border-0 rounded-none shadow-none card sm:shadow-md sm:rounded-lg">
+
+          <div class="border-0 rounded-none shadow-none card sm:shadow-md sm:rounded-lg">
           <div class="flex flex-col justify-between p-6 border-b border-gray-200">
+            <img :src="getImagenUrl('2.jpg')" alt="Tarjeta 2" class="w-full h-124object-cover" />
+
             <p class="mb-1 text-lg font-semibold text-gray-700">Free</p>
             <p class="pb-0 my-2 font-mono text-4xl font-extrabold text-gray-900 md:pb-2">$0</p>
             <a href="#" class="w-full mt-6 btn btn-primary btn-lg md:mt-16">Get Started</a>
@@ -55,6 +61,8 @@ export default {
         <div class="border-0 rounded-none shadow-none card sm:shadow-md sm:rounded-lg">
           <div class="flex flex-col justify-between p-6 border-b border-gray-200">
             <div>
+              <img :src="getImagenUrl('1.jpg')" alt="Tarjeta 2" class="w-full h-124object-cover" />
+
               <p class="mb-1 text-lg font-semibold text-gray-700">Team</p>
               <p class="my-2 font-mono text-4xl font-extrabold text-gray-900" x-text="selected === 'monthly' ? '$9' : '$89'">$9</p>
               <p class="text-base text-gray-600" x-text="selected === 'monthly' ? 'user / month' : 'user / year'">user / month</p>
@@ -116,6 +124,8 @@ export default {
         <div class="border-0 rounded-none shadow-none card sm:shadow-md sm:rounded-lg">
           <div class="flex flex-col justify-between p-6 border-b border-gray-200">
             <div>
+              <img :src="getImagenUrl('3.jpg')" alt="Tarjeta 2" class="w-full h-124object-cover" />
+
               <p class="mb-1 text-lg font-semibold text-gray-700">Company</p>
               <p class="my-2 font-mono text-4xl font-extrabold text-gray-900" x-text="selected === 'monthly' ? '$21' : '$189'">$21</p>
               <p class="text-base text-gray-600" x-text="selected === 'monthly' ? 'user / month' : 'user / year'">user / month</p>

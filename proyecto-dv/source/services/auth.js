@@ -1,42 +1,49 @@
-import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, } from "firebase/auth";
 import { auth } from "./firebase";
 
 let userData = {
     id: null,
     email: null,
-    displayName: null,
+    //displayName: null,
 }
 let observers = [];
 
-if(localStorage.getItem('user')){
+if(localStorage.getItem('user')) {
     userData = JSON.parse(localStorage.getItem('user'));
 }
 
-onAuthStateChanged(auth,user => {
-    if(user){
+onAuthStateChanged(auth, user => {
+    if(user) {
         setUserData({
             id: user.uid,
             email: user.email,
         });
-        localStogare.setItem('user', JSON.stringify(userData));
-    }else{
+        localStorage.setItem('user', JSON.stringify(userData));
+    } else {
         clearUserData();
         localStorage.removeItem('user')
     }
 })
 
-/**
- * @param {{email: string, password: string}} user 
- * @returns {Promise}
- */
+export async function register({email, password}) {
+    try {
+        const userCredentials =  await createUserWithEmailAndPassword(auth, email, password);
+        createUserProfile(userCredentials.user.uid, {email});
+        return {
+            id: userCredentials.user.uid,
+            email: userCredentials.user.email,
+        }
+    } catch (error) {
+        return {
+            code: error.code,
+            message: error.message
+        }
+    }
+}
+
 export function login ({email, password}) {
     return signInWithEmailAndPassword(auth, email, password)
         .then(userCredentials => {
-            //console.log("[auth.js]sesion iniciada.", userCredentials)
-            setUserData({
-                id: userCredentials.user.uid,
-                email: userCredentials.user.email
-            });
             return {...userData};
         })
         .catch(error => {
@@ -47,42 +54,26 @@ export function login ({email, password}) {
         });
 }
 
-/**
- * @returns {Promise}
- */
 export function logout() {
-    const promise = signOut(auth);
-    clearUserData();
-    return promise;
+    return signOut(auth);
 }
 
-/**
- * agrega un observador(callback) para notificar los datos del estado de autenticacion
- * @param {({id: null|string, email: null|string}) => void} observer 
- */
 export function suscribeToAuth(observer) {
     observers.push(observer);
     notify(observer);
+    return () => {
+        observers = observers.filter(obs => obs !== observer);
+    }
 }
 
-/**
- * notifica a todos los observers de los datos de autenticacion
- */
 function notifyAll() {
     observers.forEach(observer => notify(observer));
 }
 
-/**
- * notifica a un observador de los datos
- * @param {({id: null|string, email: null|string}) => void} observer
- */
 function notify(observer) {
     observer({...userData});
 }
 
-/**
- * @param {{id: null|string, email: null|string}} newData
- */
 function setUserData(newData){
     userData = {
         ...userData,

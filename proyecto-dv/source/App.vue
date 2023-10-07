@@ -16,6 +16,7 @@ export default {
     methods: {
         handleLogout(){
             logout();
+            this.$router.push('/iniciar-sesion');
         }
     },
     mounted() {
@@ -39,10 +40,6 @@ export default {
                 <li>
                     <router-link to="/cursos">Cursos</router-link>
                 </li>
-                <li>
-                    <router-link to="/chat">Chat</router-link>
-                </li>
-
                 <template v-if="user.id === null">
                     <li>
                     <router-link to="/iniciar-sesion">Iniciar Sesión</router-link>
@@ -53,7 +50,10 @@ export default {
                 </template>
                 <template v-else>
                     <li>
-                    <router-link to="/perfil">Mi Perfil</router-link>
+                        <router-link to="/chat">Chat</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/perfil">Mi Perfil</router-link>
                     </li>
                     <li>
                         <form action="" @submit.prevent="handleLogout">
@@ -64,8 +64,6 @@ export default {
             </ul>
         </nav>
     </header>
-
-
     <div>
         <router-view></router-view>
     </div>

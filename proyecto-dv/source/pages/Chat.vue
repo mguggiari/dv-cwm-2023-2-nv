@@ -5,29 +5,35 @@ import PrimaryButton from '../components/PrimaryButton.vue';
 import PrimaryInput from '../components/PrimaryInput.vue';
 import PrimaryTextarea from '../components/PrimaryTextarea.vue';
 import Loader from '../components/Loader.vue';
+import { suscribeToAuth } from "../services/auth.js";
 
 export default {
     name: "Chat",
     components: { PrimaryButton, PrimaryInput, PrimaryTextarea, Loader },
     data() {
         return {
-            mensajesCargando: true,
-            mensajes: [],
-            nuevoMensajeGuardado: false,
-            nuevoMensaje: {
-                usuario: '',
-                mensaje: ''
-            }
+          mensajesCargando: true,
+          mensajes: [],
+          nuevoMensajeGuardado: false,
+          nuevoMensaje: {
+            mensaje: ''
+          },
+          usuario: {
+            id: null,
+            email: null,
+          },
+          unsuscribeToAuth: () => {},
+          unsuscribeToChat: () => {},
         };
     },
     methods: {
         enviarMensaje() {
             if (this.nuevoMensajeGuardado) return;
-
             this.nuevoMensajeGuardado = true;
             chatGuardarMensaje({
-                usuario: this.nuevoMensaje.usuario,
-                mensaje: this.nuevoMensaje.mensaje
+              usuarioId: this.usuario.id,
+              usuario: this.usuario.email,
+              mensaje: this.nuevoMensaje.mensaje,
             })
                 .then(() => {
                     this.nuevoMensaje.mensaje = '';
@@ -40,10 +46,15 @@ export default {
     },
     mounted() {
         this.mensajesCargando = true;
-        chatArmadoMensajes(mensajes => {
+        this.unsuscribeToChat = chatArmadoMensajes(mensajes => {
             this.mensajes = mensajes;
             this.mensajesCargando = false;
         });
+        this.unsuscribeToAuth = suscribeToAuth( nuevoUsuario => this.usuario = {...nuevoUsuario});
+    },
+    unmounted() {
+        this.unsuscribeToAuth();
+        this.unsuscribeToChat();
     },
 };
 </script>
@@ -68,9 +79,8 @@ export default {
         <div class="shadow-md rounded-md p-4">
           <form action="#" @submit.prevent="enviarMensaje">
             <div class="mb-2">
-              <!-- PASAR EL LABEL Y TITULOS A COMPONENTES -->
               <label class="block font-bold mb-2" for="usuario">Usuario</label>
-              <PrimaryInput type="text" id="usuario" v-model="nuevoMensaje.usuario" />
+              <div>{{ usuario.email }}</div>
             </div>
             <div class="mb-2">
               <label class="block font-bold mb-2" for="mensaje">Mensaje</label>

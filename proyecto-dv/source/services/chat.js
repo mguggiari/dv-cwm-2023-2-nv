@@ -14,7 +14,7 @@ export function chatGuardarMensaje(data) {
 export function chatArmadoMensajes(callback) {
     const q = query(refChat, orderBy('created_at'));
     
-    onSnapshot(q, snapshot =>{
+    return  onSnapshot(q, snapshot =>{
         const data = snapshot.docs.map(doc => {
             return {
                 id: doc.id,

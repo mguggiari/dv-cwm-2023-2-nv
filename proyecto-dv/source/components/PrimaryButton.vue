@@ -15,7 +15,7 @@ export default {
 
 <template>
     <button 
-        class="bg-cyan-900 text-white p-2 rounded w-full hover:bg-cyan-950 active:bg-cyan-700 transition disabled:bg-cyan-500 motion-reduce:transition-none" 
+        class="bg-cyan-900 text-white p-2 rounded w-full hover:bg-cyan-950 active:bg-cyan-700 transition disabled:bg-gray-100 motion-reduce:transition-none" 
         type="submit"
         :disabled="loading"
     >

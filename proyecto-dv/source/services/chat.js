@@ -18,12 +18,12 @@ export function chatArmadoMensajes(callback) {
         const data = snapshot.docs.map(doc => {
             return {
                 id: doc.id,
+                usuarioId: doc.data().usuarioId,
                 usuario: doc.data().usuario,
                 mensaje: doc.data().mensaje,
                 created_at: doc.data().created_at.toDate(),
             };
         });
-        
         callback(data);
     });
 }

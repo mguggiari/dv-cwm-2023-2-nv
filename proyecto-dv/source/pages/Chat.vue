@@ -29,6 +29,7 @@ export default {
     methods: {
         enviarMensaje() {
             if (this.nuevoMensajeGuardado) return;
+            
             this.nuevoMensajeGuardado = true;
             chatGuardarMensaje({
               usuarioId: this.usuario.id,
@@ -67,7 +68,14 @@ export default {
         <div>
           <template v-if="!mensajesCargando">
             <div v-for="mensaje in mensajes" :key="mensaje.id" class="mb-2">
-              <div><b class="mr-1.5">Usuario:</b>{{ mensaje.usuario }}</div>
+              <div>
+                <b class="mr-1.5">
+                  Usuario:
+                </b>
+                <router-link 
+                class="text-blue-500 hover:underline"
+                :to="`/usuario/${mensaje.usuarioId}`">{{ mensaje.usuario }}</router-link>
+              </div>
               <div><b class="mr-1.5">Mensaje:</b>{{ mensaje.mensaje }}</div>
               <div class="text-right">{{ fechaFormateada(mensaje.created_at) }}</div>
             </div>

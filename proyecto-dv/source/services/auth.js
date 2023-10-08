@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, } from "firebase/auth";
 import { auth } from "./firebase";
+import { createUserProfile } from './user.js';
 
 let userData = {
     id: null,
@@ -28,7 +29,10 @@ onAuthStateChanged(auth, user => {
 export async function register({email, password}) {
     try {
         const userCredentials =  await createUserWithEmailAndPassword(auth, email, password);
+
+        //aca hay que agregar lo del rol
         createUserProfile(userCredentials.user.uid, {email});
+        
         return {
             id: userCredentials.user.uid,
             email: userCredentials.user.email,

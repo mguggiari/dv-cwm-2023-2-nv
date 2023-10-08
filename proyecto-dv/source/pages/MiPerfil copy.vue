@@ -1,16 +1,8 @@
 <script>
-
-</script>
-
-<template>
-  <h1> Mi perfil </h1>
-</template>
-
-<!-- <script>
 import {subscribeToAuthChanges, updateUserProfile} from "../services/auth.js";
 
 export default {
-    name: "Profile",
+    name: "MiPerfil",
     data: () => ({
         form: {
             displayName: '',
@@ -111,4 +103,4 @@ export default {
             </form>
         </section>
     </section>
-</template> -->
+</template> 

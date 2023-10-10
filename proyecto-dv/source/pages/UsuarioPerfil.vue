@@ -31,6 +31,6 @@ export default {
 
         <router-link
         :to="`/usuario/${usuario.id}/chat`"
-        >Iniciar una Conversacion privada cn {{ usuario.email }}</router-link>
+        >Iniciar una Conversacion privada con {{ usuario.email }}</router-link>
     </template>
 </template> 

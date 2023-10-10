@@ -54,13 +54,13 @@ export default {
       </div>
     </div>
   </section>
-  <section class="w-full bg-slate-300">
+  <section class="w-full  bg-blue-100">
     <div class="w-full px-4 py-20 mx-auto text-left md:text-center md:w-3/4 lg:w-2/4">
-      <p class="mb-2 text-base font-semibold text-purple-700">Start your free trial now</p>
-      <h2 class="mb-6 text-3xl font-extrabold tracking-tight md:text-4xl md:mb-6 md:leading-tight">Sign up for a free account to organize your customer feedback.</h2>
+      <p class="mb-2  font-semibold text-cyan-950">Registrate para obtener una cuenta gratuita y organizá tus cursos</p>
+      <h2 class="mb-6 text-3xl font-bold text-gray-800 tracking-tight md:text-4xl md:mb-6 md:leading-tight">Descubre la excelencia educativa con nuestros docentes capacitados.</h2>
       <div class="mb-0 space-x-0 md:space-x-2">
         <a class="inline-flex items-center justify-center w-full mb-2 btn btn-primary btn-lg sm:w-auto sm:mb-0" href="/cursos">
-          Get Started
+          Empezar
           <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>

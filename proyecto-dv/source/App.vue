@@ -17,7 +17,10 @@ export default {
         handleLogout(){
             logout();
             this.$router.push('/iniciar-sesion');
-        }
+        },
+    getImagenUrl(nombreImagen) {
+      return `/imagenes/${nombreImagen}`;
+    },
     },
     mounted() {
         suscribeToAuth (user =>{
@@ -28,36 +31,36 @@ export default {
 </script>
 
 <template>
-    <header class="bg-neutral-200">
-        <div>
-            <p class="text-xl">EnglishCourse</p>
+  <header>
+        <div class="bg-neutral-200 ">
+            <img :src="getImagenUrl('nombre.png')" alt="Logotipo" class="w-16 mx-auto"/>
         </div>
-        <nav>
-            <ul class="flex gap-4">
+        <nav class="text-center">
+            <ul class="flex gap-4 justify-center items-center mt-4">
                 <li>
-                    <router-link to="/">Inicio</router-link>
+                    <router-link to="/" class="text-blue-900 font-semibold">Inicio</router-link>
                 </li>
                 <li>
-                    <router-link to="/cursos">Cursos</router-link>
+                    <router-link to="/cursos" class="text-blue-900 font-semibold">Cursos</router-link>
                 </li>
                 <template v-if="user.id === null">
                     <li>
-                    <router-link to="/iniciar-sesion">Iniciar Sesión</router-link>
+                        <router-link to="/iniciar-sesion" class="text-blue-900 font-semibold">Iniciar Sesión</router-link>
                     </li>
                     <li>
-                        <router-link to="/registro">Registrarse</router-link>
+                        <router-link to="/registro" class="text-blue-900 font-semibold">Registrarse</router-link>
                     </li>
                 </template>
                 <template v-else>
                     <li>
-                        <router-link to="/chat">Chat</router-link>
+                        <router-link to="/chat" class="text-blue-900 font-semibold">Chat</router-link>
                     </li>
                     <li>
-                        <router-link to="/perfil">Mi Perfil</router-link>
+                        <router-link to="/perfil" class="text-blue-900 font-semibold">Mi Perfil</router-link>
                     </li>
                     <li>
                         <form action="" @submit.prevent="handleLogout">
-                            <button type="submit">{{ user.email }}Cerrar Sesión</button>
+                            <button type="submit" class="text-blue-900 font-semibold">{{ user.email }}Cerrar Sesión</button>
                         </form>
                     </li>
                 </template>

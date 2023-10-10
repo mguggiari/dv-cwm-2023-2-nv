@@ -30,8 +30,9 @@ export default {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl mb-4 font-bold">Crear cuenta</h1>
+  <div class="flex justify-center items-center mt-16">
+    <div class="bg-white p-8 rounded-md shadow-md w-1/2">
+    <h1 class="text-3xl mb-4 font-bold">Crea tu cuenta</h1>
     <form action="#" @submit.prevent="handleSubmit">
       <div class="mb-4">
         <label for="email" class="block font-bold mb-2">Email</label>
@@ -43,5 +44,6 @@ export default {
       </div>
       <PrimaryButton :loading="registroCargando" class="bg-medium-border text-white hover:bg-white hover:text-medium-border">Registrarme</PrimaryButton>
     </form>
+  </div>
   </div>
 </template>

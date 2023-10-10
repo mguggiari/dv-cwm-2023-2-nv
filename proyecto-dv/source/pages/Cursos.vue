@@ -35,7 +35,7 @@ export default {
 
 <template>
   <section>
-    <div class="pb-64 bg-gray-100">
+    <div class="pb-64">
       <div class="max-w-7xl px-4 pt-20 mx-auto text-center sm:text-left">
         <h1 class="mb-3 text-4xl font-bold leading-tight text-gray-900 md:text-5xl md:font-extrabold">Cursos</h1>
         <p class="mb-10 text-lg text-gray-600 md:text-xl">

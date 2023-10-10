@@ -11,15 +11,65 @@ import {createRouter, createWebHistory} from 'vue-router';
 import {suscribeToAuth} from '../services/auth.js';
 
 const routes = [
-    { path: '/',                    component: Home },
-    { path: '/cursos',              component: Cursos },
-    { path: '/404',                 component: Error },
-    { path: '/registro',            component: Register },
-    { path: '/iniciar-sesion',      component: Login },
-    { path: '/chat',                component: Chat,            meta: {requiresAuth: true}, },
-    { path: '/perfil',              component: MiPerfil,        meta: {requiresAuth: true}, },
-    { path: '/usuario/:id',         component: UsuarioPerfil,   meta: {requiresAuth: true}, },
-    { path: '/usuario/:id/chat',    component: ChatPrivado,     meta: {requiresAuth: true}, },
+    { 
+        path: '/',
+        component: Home,  
+        meta: { title: 'Inicio' } 
+    },
+    { 
+        path: '/cursos',              
+        component: Cursos, 
+        meta: { title: 'Cursos' } 
+    },
+    { 
+        path: '/registro',            
+        component: Register,
+        meta: { title: 'Registro' } 
+    },
+    { 
+        path: '/iniciar-sesion',      
+        component: Login,
+        meta: { title: 'Iniciar Sesión' }
+    },
+    { 
+        path: '/chat',                
+        component: Chat,            
+        meta: {
+            requiresAuth: true,
+            title: 'Chat'
+        }, 
+    },
+    { 
+        path: '/perfil',              
+        component: MiPerfil,        
+        meta: {
+            requiresAuth: true,
+            title: 'Mi Perfil'
+        }, 
+    },
+    { 
+        path: '/usuario/:id',         
+        component: UsuarioPerfil,   
+        meta: {
+            requiresAuth: true,
+            title: 'Perfil de Usuario'
+        }, 
+    },
+    { 
+        path: '/usuario/:id/chat',    
+        component: ChatPrivado,     
+        meta: {
+            requiresAuth: true
+        }, 
+    },
+    { 
+        path: '/404', 
+        component: Error,
+        meta: {
+            title: 'Página no encontrada'
+        }, 
+    },
+    { path: '/:catchAll(.*)', redirect: '/404' },
 ];
 
 const router = createRouter({
@@ -35,6 +85,8 @@ let usuario = {
 suscribeToAuth(nuevoUsuario => usuario = nuevoUsuario);
 
 router.beforeEach((to, from) => {
+    document.title = to.meta.title || 'English Lessons';
+    
     if(usuario.id === null && to.meta.requiresAuth){
         return '/iniciar-sesion';
     }

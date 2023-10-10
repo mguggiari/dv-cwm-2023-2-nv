@@ -21,7 +21,7 @@ export default {
 <template>
   <section class="px-4 py-20 mx-auto max-w-7xl">
     <div class="bg-blue-500">
-      <img :src="getImagenUrl('banners.png')" alt="Banner principal" class="w-full" /> //mica te dejo el banner aca
+      <img :src="getImagenUrl('banners.png')" alt="Banner principal" class="w-full" /> 
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20">
       <div>
@@ -29,28 +29,28 @@ export default {
           <FontAwesomeIcon :icon="['fas', 'chalkboard']" class="text-2xl text-blue-500" />
         </div>
         <h3 class="mb-2 text-base font-semibold leading-tight text-gray-900">Docentes capacitados</h3>
-        <p class="text-sm text-gray-500">Hand crafted dashboards for everything from Recurring Revenue to Customer Churn.</p>
+        <p class="text-sm text-gray-500">Docentes capacitados son la clave para una educación de calidad y un futuro brillante para los estudiantes.</p>
       </div>
       <div>
         <div class="flex items-center justify-center w-12 h-12 mb-4  bg-blue-100 rounded-full">
           <FontAwesomeIcon :icon="['fas', 'book']" class="text-2xl text-blue-500" />
         </div>
         <h3 class="mb-2 text-base font-semibold leading-tight text-gray-900">Aprende a tu ritmo</h3>
-        <p class="text-sm text-gray-500">Stay informed with daily, weekly, or monthly reports on all your insights data.</p>
+        <p class="text-sm text-gray-500">SAprende a tu ritmo, en línea, y aprovecha la flexibilidad de la educación en línea para alcanzar tus metas de aprendizaje.</p>
       </div>
       <div>
         <div class="flex items-center justify-center w-12 h-12 mb-4  bg-blue-100 rounded-full">
           <FontAwesomeIcon :icon="['fas', 'certificate']" class="text-2xl text-blue-500" />
         </div>
         <h3 class="mb-2 text-base font-semibold leading-tight text-gray-900">Certificados</h3>
-        <p class="text-sm text-gray-500">Your central hub that helps you see, and react to, absolutely everything that’s happening.</p>
+        <p class="text-sm text-gray-500">Obtén certificados reconocidos que validen tus logros y habilidades en tu camino de aprendizaje.</p>
       </div>
       <div>
         <div class="flex items-center justify-center w-12 h-12 mb-4  bg-blue-100 rounded-full">
           <FontAwesomeIcon :icon="['fas', 'comments']" class="text-2xl text-blue-500" />
         </div>
         <h3 class="mb-2 text-base font-semibold leading-tight text-gray-900">Comparte conocimientos</h3>
-        <p class="text-sm text-gray-500">Our forecasting is your magical crystal ball that helps you predict and plan for the future.</p>
+        <p class="text-sm text-gray-500">Comparte conocimientos y enriquece el aprendizaje colectivo.</p>
       </div>
     </div>
   </section>

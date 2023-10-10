@@ -67,7 +67,7 @@ export default {
     <div>
         <router-view></router-view>
     </div>
-    <footer class="flex justify-center h-[100px] items-center text-black bg-orange-300">
+    <footer class="flex justify-center h-[100px] items-center text-white bg-blue-950">
         <p class="p-4">
             Foter
         </p>

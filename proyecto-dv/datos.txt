@@ -8,3 +8,8 @@ Alumna: Barco, Cecilia
 Alumna: Guggiari, Micaela
 ***
 Gallino, Santiago
+***
+Usuarios
+admin: admin@royalenglish.com.ar pass: royal2023
+user: micaelaguggiari@davinci.edu.ar pass: micaela123
+user: ceciliabarco@davinci.edu.ar pass: cecilia123

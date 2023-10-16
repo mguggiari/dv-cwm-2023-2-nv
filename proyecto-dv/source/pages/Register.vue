@@ -21,7 +21,7 @@ export default {
         await register({...this.nuevoUsuario});
         this.$router.push('/');
       } catch (error) {
-        //manejar error
+        console.log(error);
       }
       this.registroCargando = false;
     }

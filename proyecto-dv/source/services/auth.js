@@ -5,8 +5,9 @@ import { createUserProfile } from './user.js';
 let userData = {
     id: null,
     email: null,
-    //displayName: null,
+    rol: null,
 }
+
 let observers = [];
 
 if(localStorage.getItem('user')) {
@@ -18,6 +19,7 @@ onAuthStateChanged(auth, user => {
         setUserData({
             id: user.uid,
             email: user.email,
+            rol: user.rol,
         });
         localStorage.setItem('user', JSON.stringify(userData));
     } else {
@@ -26,16 +28,16 @@ onAuthStateChanged(auth, user => {
     }
 })
 
-export async function register({email, password}) {
+export async function register({email, password, rol = 'user'}) {
     try {
         const userCredentials =  await createUserWithEmailAndPassword(auth, email, password);
 
-        //aca hay que agregar lo del rol
-        createUserProfile(userCredentials.user.uid, {email});
-        
+        createUserProfile(userCredentials.user.uid, {email, rol});
+
         return {
             id: userCredentials.user.uid,
             email: userCredentials.user.email,
+            rol: userCredentials.user.rol,
         }
     } catch (error) {
         return {

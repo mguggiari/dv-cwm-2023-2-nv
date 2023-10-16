@@ -21,7 +21,7 @@ export function chatArmadoMensajes(callback) {
                 usuarioId: doc.data().usuarioId,
                 usuario: doc.data().usuario,
                 mensaje: doc.data().mensaje,
-                created_at: doc.data().created_at.toDate(),
+                created_at: doc.data().created_at?.toDate(),
             };
         });
         callback(data);

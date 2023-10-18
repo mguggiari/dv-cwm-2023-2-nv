@@ -20,8 +20,8 @@ export default {
 
 <template>
   <section class="px-4 py-20 mx-auto max-w-7xl">
-    <div class="bg-blue-500">
-      <img :src="getImagenUrl('banners.png')" alt="Banner principal" class="w-full" /> 
+    <div class="bg-[url('./imagenes/banners.png')] bg-contain">
+      <h1>Hola</h1>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20">
       <div>

@@ -4,13 +4,14 @@ import { suscribeToAuth, logout } from './services/auth.js';
 
 export default {
     name: "App",
-    components: {Chat},
+    components: { Chat },
     data() {
         return{
             user: {
                 id: null,
                 email: null,
-            }
+                rol: null,
+            },
         }
     },
     methods: {
@@ -19,7 +20,7 @@ export default {
             this.$router.push('/iniciar-sesion');
         },
     getImagenUrl(nombreImagen) {
-      return `/imagenes/${nombreImagen}`;
+        return `/imagenes/${nombreImagen}`;
     },
     },
     mounted() {
@@ -31,7 +32,7 @@ export default {
 </script>
 
 <template>
-  <header>
+    <header>
         <div class="bg-neutral-200 ">
             <img :src="getImagenUrl('nombre.png')" alt="Logotipo" class="w-16 mx-auto"/>
         </div>
@@ -43,27 +44,26 @@ export default {
                 <li>
                     <router-link to="/cursos" class="text-blue-900 font-semibold">Cursos</router-link>
                 </li>
-                <template v-if="user.id === null">
-                    <li>
+                    <li v-if="user.id === null">
                         <router-link to="/iniciar-sesion" class="text-blue-900 font-semibold">Iniciar Sesión</router-link>
                     </li>
-                    <li>
+                    <li v-if="user.id === null">
                         <router-link to="/registro" class="text-blue-900 font-semibold">Registrarse</router-link>
                     </li>
-                </template>
-                <template v-else>
-                    <li>
+                    <li v-if="user.id !== null">
                         <router-link to="/chat" class="text-blue-900 font-semibold">Chat</router-link>
                     </li>
-                    <li>
-                        <router-link to="/perfil" class="text-blue-900 font-semibold">Mi Perfil</router-link>
+                    <li v-if="user.rol == 'admin'">
+                        <router-link to="/panel-admin" class="text-blue-900 font-semibold">Admin</router-link>
                     </li>
-                    <li>
+                    <li v-if="user.id !== null">
+                        <router-link to="/perfil" class="text-blue-900 font-semibold">Mi Perfil</router-link>
+                    </li> 
+                    <li v-if="user.id !== null">
                         <form action="" @submit.prevent="handleLogout">
                             <button type="submit" class="text-blue-900 font-semibold">{{ user.email }}Cerrar Sesión</button>
                         </form>
                     </li>
-                </template>
             </ul>
         </nav>
     </header>

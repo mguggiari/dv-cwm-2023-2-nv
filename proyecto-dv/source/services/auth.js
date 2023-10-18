@@ -1,6 +1,6 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, } from "firebase/auth";
-import { auth } from "./firebase";
-import { createUserProfile } from './user.js';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut} from "firebase/auth";
+import { auth, db } from "./firebase";
+import { createUserProfile, getUserById } from './user.js';
 
 let userData = {
     id: null,
@@ -19,14 +19,22 @@ onAuthStateChanged(auth, user => {
         setUserData({
             id: user.uid,
             email: user.email,
-            rol: user.rol,
         });
+        getUserById(user.uid).then((userData) => {
+            setUserData({...userData});
+        });
+        //console.log(userData, '[linea23]');  
         localStorage.setItem('user', JSON.stringify(userData));
     } else {
         clearUserData();
         localStorage.removeItem('user')
     }
 })
+
+export function checkAdminAccess() {
+    const user = getUserData(); 
+    return user.rol === 'admin';
+}
 
 export async function register({email, password, rol = 'user'}) {
     try {
@@ -48,8 +56,10 @@ export async function register({email, password, rol = 'user'}) {
 }
 
 export function login ({email, password}) {
+
     return signInWithEmailAndPassword(auth, email, password)
         .then(userCredentials => {
+            
             return {...userData};
         })
         .catch(error => {
@@ -91,7 +101,8 @@ function setUserData(newData){
 function clearUserData() {
     setUserData({
         id: null,
-        email: null
+        email: null,
+        rol: null,
     });
 }
 

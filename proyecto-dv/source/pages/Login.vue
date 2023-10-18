@@ -1,7 +1,6 @@
 <script>
 import PrimaryButton from '../components/PrimaryButton.vue';
 import { login } from '../services/auth.js'
-
 export default {
   name: "Login",
   components: { PrimaryButton },
@@ -18,7 +17,6 @@ export default {
   methods: {
     iniciarSesion() {
       this.inicioSesionCargando = true;
-
       login({
         ...this.form,
       })

@@ -6,9 +6,11 @@ import Login from './../pages/Login.vue';
 import MiPerfil from './../pages/MiPerfil.vue';
 import UsuarioPerfil from './../pages/UsuarioPerfil.vue';
 import ChatPrivado from './../pages/ChatPrivado.vue';
+import PanelAdmin from './../pages/PanelAdmin.vue';
+import CursoEditar from './../pages/CursoEditar.vue';
 import Error from './../pages/404.vue';
-import {createRouter, createWebHistory} from 'vue-router';
-import {suscribeToAuth} from '../services/auth.js';
+import { createRouter, createWebHistory } from 'vue-router';
+import { suscribeToAuth, checkAdminAccess } from '../services/auth.js';
 
 const routes = [
     { 
@@ -63,6 +65,23 @@ const routes = [
         }, 
     },
     { 
+        path: '/panel-admin',    
+        component: PanelAdmin,     
+        meta: {
+            requiresAuth: true,
+            requiresAdmin: true,
+        }, 
+    },
+    
+    { 
+        path: '/editar/curso/:id',    
+        component: CursoEditar,     
+        meta: {
+            requiresAuth: true,
+            requiresAdmin: true,
+        }, 
+    },
+    { 
         path: '/404', 
         component: Error,
         meta: {
@@ -88,6 +107,10 @@ router.beforeEach((to, from) => {
     document.title = to.meta.title || 'English Lessons';
     
     if(usuario.id === null && to.meta.requiresAuth){
+        return '/iniciar-sesion';
+    }
+
+    if(!checkAdminAccess() && to.meta.requiresAdmin){
         return '/iniciar-sesion';
     }
 });

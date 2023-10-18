@@ -2,6 +2,20 @@ import { setDoc, getDoc } from "firebase/firestore";
 import { doc } from "firebase/firestore";
 import { db } from "./firebase.js";
 
+export async function getUserById(id) {
+    const userRef = doc(db, "usuarios", id);
+    const user = await getDoc(userRef);
+    
+    if (!user.exists()) {
+        throw new Error("[users.js getUserById] El usuario no existe");
+    }
+    
+    return {
+        id: user.id,
+        ...user.data(),
+    };
+}
+
 export async function getUserProfileById(id){
     if(id !== null && id !== '') {
         const refUsuario = doc(db, `usuarios/${id}`);

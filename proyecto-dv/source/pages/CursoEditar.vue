@@ -10,9 +10,9 @@ export default {
         return {
             productoCargando: true,
             form: {
-                titulo: "",
-                precio: "",
-                descripcion: "",
+                titulo: '',
+                precio: '',
+                descripcion: '',
             },
         };
     },

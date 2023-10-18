@@ -4,24 +4,28 @@ export default {
     name: "PanelAdmin",
     data() {
         return {
-        productos: [],
-        productosCargando: true,
+            productos: [],
+            productosCargando: true,
+            mobileMenuOpen: false,
         };
     },
     methods: {
         cargarProductos() {
-        this.productosCargando = true;
-        getProductos()
-            .then((productos) => {
-                this.productos = productos;
-                console.log(productos);
-            })
-            .catch((error) => {
-                console.error('Error al obtener productos:', error);
-            })
-            .finally(() => {
-                this.productosCargando = false;
-            });
+            this.productosCargando = true;
+            getProductos()
+                .then((productos) => {
+                    this.productos = productos;
+                    console.log(productos);
+                })
+                .catch((error) => {
+                    console.error('Error al obtener productos:', error);
+                })
+                .finally(() => {
+                    this.productosCargando = false;
+                });
+        },
+        toggleMobileMenu() {
+            this.mobileMenuOpen = !this.mobileMenuOpen;
         },
     },
     mounted() {
@@ -32,12 +36,9 @@ export default {
 
 <template>
     <h1>Panel Admin</h1>
-    <a
-        href="#"
-        class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
-    >
-        Nuevo Producto
-    </a>
+    <router-link class="text-blue-500 hover:underline" to="/curso/nuevo">
+        Crear curso
+    </router-link>
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
             <thead>
@@ -63,18 +64,12 @@ export default {
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ producto.precio }}</td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ producto.descripcion }}</td>
                     <td class="whitespace-nowrap px-4 py-2">
-                        <router-link class="text-blue-500 hover:underline" :to="`/editar/curso/${producto.id}`">
+                        <router-link class="text-blue-500 hover:underline" :to="`/curso/${producto.id}/editar`">
                             Editar 
                         </router-link>
-                        <a
-                            href="#"
-                            class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
-                        >
-                            Borrar
-                        </a>
                     </td>
                 </tr>
             </tbody>    
         </table>
-    </div>
+    </div> 
 </template> 

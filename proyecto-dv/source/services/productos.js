@@ -1,5 +1,5 @@
 import { db } from "./firebase.js";
-import { collection, query, orderBy, getDocs, getDoc, doc, updateDoc } from 'firebase/firestore';
+import { collection, query, orderBy, getDocs, getDoc, doc, updateDoc, addDoc, serverTimestamp, } from 'firebase/firestore';
 
 export async function getProductos() {
     const refProducto = collection(db, "productos");
@@ -38,7 +38,6 @@ export async function getProductoById(id) {
     };
 }
 
-
 export async function editarProducto(id, producto) {
     //console.log(id, producto, '[productos.js editarProducto]');
     const productoRef = doc(db, "productos", id);
@@ -46,8 +45,17 @@ export async function editarProducto(id, producto) {
     return producto;
 }
 
+export async function crearProducto(nuevoProducto) {
+    try {
+        //console.log(nuevoProducto, '[productos.js crearProducto]');
+        const productosRef = collection(db, 'productos');
+        nuevoProducto.created_at = serverTimestamp();
 
-
-
-
+        const docRef = await addDoc(productosRef, nuevoProducto);
+        return docRef.id;
+    } catch (error) {
+        //console.error('Error al crear un nuevo producto:', error);
+        throw error; 
+    }
+}
 

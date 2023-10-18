@@ -8,6 +8,7 @@ import UsuarioPerfil from './../pages/UsuarioPerfil.vue';
 import ChatPrivado from './../pages/ChatPrivado.vue';
 import PanelAdmin from './../pages/PanelAdmin.vue';
 import CursoEditar from './../pages/CursoEditar.vue';
+import CursoNuevo from './../pages/CursoNuevo.vue';
 import Error from './../pages/404.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import { suscribeToAuth, checkAdminAccess } from '../services/auth.js';
@@ -72,10 +73,17 @@ const routes = [
             requiresAdmin: true,
         }, 
     },
-    
     { 
-        path: '/editar/curso/:id',    
+        path: '/curso/:id/editar',    
         component: CursoEditar,     
+        meta: {
+            requiresAuth: true,
+            requiresAdmin: true,
+        }, 
+    },
+    { 
+        path: '/curso/nuevo',    
+        component: CursoNuevo,     
         meta: {
             requiresAuth: true,
             requiresAdmin: true,

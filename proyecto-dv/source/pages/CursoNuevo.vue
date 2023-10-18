@@ -1,10 +1,10 @@
 <script>
 import PrimaryButton from '../components/PrimaryButton.vue';
 import Loader from '../components/Loader.vue';
-import { getProductoById, editarProducto } from '../services/productos.js'
+import {  } from '../services/productos.js'
 
 export default {
-    name: "CursoEditar",
+    name: "CursoNuevo",
     components: { PrimaryButton, Loader },
     data() {
         return {
@@ -17,24 +17,10 @@ export default {
         };
     },
     methods: {
-        async handleEditarProducto() {
-            this.producto.titulo = this.form.titulo;
-            this.producto.precio = this.form.precio;
-            this.producto.descripcion = this.form.descripcion;
-
-            await editarProducto(this.$route.params.id, this.producto);
-
-            this.$router.push('/panel-admin');
-        },
+        
     },
     async mounted() {
-        this.productoCargando = true;
-        this.producto = await getProductoById(this.$route.params.id);
-        this.productoCargando = false;
-
-        this.form.titulo = this.producto.titulo;
-        this.form.precio = this.producto.precio;
-        this.form.descripcion = this.producto.descripcion;
+        
     },
 };
 </script>

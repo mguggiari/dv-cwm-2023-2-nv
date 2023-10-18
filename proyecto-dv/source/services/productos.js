@@ -1,5 +1,5 @@
 import { db } from "./firebase.js";
-import { collection, query, orderBy, getDocs, getDoc, doc } from 'firebase/firestore';
+import { collection, query, orderBy, getDocs, getDoc, doc, updateDoc } from 'firebase/firestore';
 
 export async function getProductos() {
     const refProducto = collection(db, "productos");
@@ -38,34 +38,13 @@ export async function getProductoById(id) {
     };
 }
 
-// export async function editarProducto(id, producto) {
-//     console.log("product", producto);
-//     console.log("id", id);
 
-//     const productRef = doc(db, "productos", id);
-//     await updateDoc(productRef, producto);
-// }
-
-// export async function editProducto(id, newData) {
-//     try {
-//         // Obtén el producto existente por su ID
-//         const productoRef = doc(db, "productos", id);
-//         const productoSnapshot = await getDoc(productoRef);
-
-//         if (!productoSnapshot.exists()) {
-//             throw new Error("[productos.js editProducto] El producto no existe");
-//         }
-
-//         // Realiza la actualización del producto con los nuevos datos
-//         await updateDoc(productoRef, newData);
-
-//         return { id, ...newData };
-//     } catch (error) {
-//         console.error("Error al editar el producto:", error);
-//         throw error;
-//     }
-// }
-
+export async function editarProducto(id, producto) {
+    //console.log(id, producto, '[productos.js editarProducto]');
+    const productoRef = doc(db, "productos", id);
+    await updateDoc(productoRef, producto);
+    return producto;
+}
 
 
 

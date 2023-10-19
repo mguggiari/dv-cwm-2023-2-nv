@@ -1,0 +1,104 @@
+<script>
+import {chatArmadoMensajes, chatGuardarMensaje} from '../services/chat.js';
+import { dateToString } from '../helpers/date.js';
+import PrimaryButton from '../components/PrimaryButton.vue';
+import PrimaryInput from '../components/PrimaryInput.vue';
+import PrimaryTextarea from '../components/PrimaryTextarea.vue';
+import Loader from '../components/Loader.vue';
+import { suscribeToAuth } from "../services/auth.js";
+
+export default {
+    name: "Chat",
+    components: { PrimaryButton, PrimaryInput, PrimaryTextarea, Loader },
+    data() {
+        return {
+          mensajesCargando: true,
+          mensajes: [],
+          nuevoMensajeGuardado: false,
+          nuevoMensaje: {
+            mensaje: ''
+          },
+          usuario: {
+            id: null,
+            email: null,
+          },
+          unsuscribeToAuth: () => {},
+          unsuscribeToChat: () => {},
+        };
+    },
+    methods: {
+        enviarMensaje() {
+            if (this.nuevoMensajeGuardado) return;
+            
+            this.nuevoMensajeGuardado = true;
+            chatGuardarMensaje({
+              usuarioId: this.usuario.id,
+              usuario: this.usuario.email,
+              mensaje: this.nuevoMensaje.mensaje,
+            })
+                .then(() => {
+                    this.nuevoMensaje.mensaje = '';
+                    this.nuevoMensajeGuardado = false;
+                });
+        },
+        fechaFormateada(date) {
+            return dateToString(date);
+        }
+    },
+    mounted() {
+        this.mensajesCargando = true;
+        this.unsuscribeToChat = chatArmadoMensajes(mensajes => {
+            this.mensajes = mensajes;
+            this.mensajesCargando = false;
+        });
+        this.unsuscribeToAuth = suscribeToAuth( nuevoUsuario => this.usuario = {...nuevoUsuario});
+    },
+    unmounted() {
+        this.unsuscribeToAuth();
+        this.unsuscribeToChat();
+    },
+};
+</script>
+
+<template>
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-3xl mb-4 font-bold">Chat público</h1>
+      <p class="mb-3">Aquí podrás ver las conversaciones de la comunidad</p>
+      <div class="flex justify-between gap-4">
+        <div>
+          <template v-if="!mensajesCargando">
+            <div v-for="mensaje in mensajes" :key="mensaje.id" class="mb-2">
+              <div>
+                <b class="mr-1.5">
+                  Usuario:
+                </b>
+                <router-link 
+                class="text-blue-500 hover:underline"
+                :to="`/usuario/${mensaje.usuarioId}`">{{ mensaje.usuario }}</router-link>
+              </div>
+              <div><b class="mr-1.5">Mensaje:</b>{{ mensaje.mensaje }}</div>
+              <div class="text-right">{{ fechaFormateada(mensaje.created_at) }}</div>
+            </div>
+          </template>
+          <template v-else>
+            <Loader />
+          </template>
+        </div>
+        <div class="shadow-md rounded-md p-4">
+          <form action="#" @submit.prevent="enviarMensaje">
+            <div class="mb-2">
+              <label class="block font-bold mb-2" for="usuario">Usuario</label>
+              <div>{{ usuario.email }}</div>
+            </div>
+            <div class="mb-2">
+              <label class="block font-bold mb-2" for="mensaje">Mensaje</label>
+              <PrimaryTextarea id="mensaje" v-model="nuevoMensaje.mensaje">
+              </PrimaryTextarea>
+            </div>
+            <PrimaryButton :loading="nuevoMensajeGuardado" />
+          </form>
+        </div>
+      </div>
+      <div id="salida"></div>
+    </div>
+  </template>

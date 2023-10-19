@@ -1,7 +1,7 @@
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faChalkboard, faBook, faComments, faCertificate } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faChalkboard, faBook, faComments, faCertificate } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faChalkboard, faBook, faComments, faCertificate);
 

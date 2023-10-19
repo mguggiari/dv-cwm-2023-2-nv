@@ -13,7 +13,7 @@ export default {
             getUsersByRol("admin")
                 .then((admins) => {
                     this.admins = admins;
-                    console.log(admins)
+                    //console.log(admins)
                 })
                 .catch((error) => {
                     console.error("Error al obtener admins:", error);

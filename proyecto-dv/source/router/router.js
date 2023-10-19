@@ -7,6 +7,7 @@ import MiPerfil from './../pages/MiPerfil.vue';
 import UsuarioPerfil from './../pages/UsuarioPerfil.vue';
 import ChatPrivado from './../pages/ChatPrivado.vue';
 import PanelAdmin from './../pages/PanelAdmin.vue';
+import PerfilAdmin from './../pages/PerfilAdmin.vue';
 import CursoEditar from './../pages/CursoEditar.vue';
 import CursoNuevo from './../pages/CursoNuevo.vue';
 import Error from './../pages/404.vue';
@@ -68,6 +69,14 @@ const routes = [
     { 
         path: '/panel-admin',    
         component: PanelAdmin,     
+        meta: {
+            requiresAuth: true,
+            requiresAdmin: true,
+        }, 
+    },
+    { 
+        path: '/perfil-admin',    
+        component: PerfilAdmin,     
         meta: {
             requiresAuth: true,
             requiresAdmin: true,

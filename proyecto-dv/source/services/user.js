@@ -1,5 +1,4 @@
-import { setDoc, getDoc } from "firebase/firestore";
-import { doc } from "firebase/firestore";
+import { setDoc, getDoc, doc, where, getDocs, collection, query  } from "firebase/firestore";
 import { db } from "./firebase.js";
 
 export async function getUserById(id) {
@@ -35,3 +34,21 @@ export async function createUserProfile(id, data){
     const refUsuario = doc(db, `usuarios/${id}`);
     return setDoc(refUsuario, {...data});
 }
+
+export async function getUsersByRol(rol) {
+    // Acceder a la colección de usuarios
+    const usuariosRef = collection(db, "usuarios");
+
+    // Filtrar por rol
+    const q = query(usuariosRef, where("rol", "==", rol));
+
+    // Obtener los usuarios
+    const usuariosSnapshot = await getDocs(q);
+
+    // Retornar los usuarios
+    return usuariosSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
+}
+

@@ -56,8 +56,11 @@ export default {
                     <li v-if="user.rol == 'admin'">
                         <router-link to="/panel-admin" class="text-blue-900 font-semibold">Admin</router-link>
                     </li>
-                    <li v-if="user.id !== null">
-                        <router-link to="/perfil" class="text-blue-900 font-semibold">Mi Perfil</router-link>
+                    <li v-if="user.rol == 'admin'">
+                        <router-link to="/perfil-admin" class="text-blue-900 font-semibold">Perfil Admin</router-link>
+                    </li>
+                    <li v-if="user.id !== null && user.rol == 'user'">
+                        <router-link to="/perfil" class="text-blue-900 font-semibold">Mi Perfil Cliente</router-link>
                     </li> 
                     <li v-if="user.id !== null">
                         <form action="" @submit.prevent="handleLogout">

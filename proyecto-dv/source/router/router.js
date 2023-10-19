@@ -1,6 +1,5 @@
 import Home from './../pages/Home.vue';
 import Cursos from './../pages/Cursos.vue';
-import Chat from './../pages/Chat.vue';
 import Register from './../pages/Register.vue';
 import Login from './../pages/Login.vue';
 import MiPerfil from './../pages/MiPerfil.vue';
@@ -34,14 +33,6 @@ const routes = [
         path: '/iniciar-sesion',      
         component: Login,
         meta: { title: 'Iniciar Sesión' }
-    },
-    { 
-        path: '/chat',                
-        component: Chat,            
-        meta: {
-            requiresAuth: true,
-            title: 'Chat'
-        }, 
     },
     { 
         path: '/perfil',              

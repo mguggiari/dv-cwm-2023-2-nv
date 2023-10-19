@@ -1,10 +1,8 @@
 <script>
-import Chat from './pages/Chat.vue';
 import { suscribeToAuth, logout } from './services/auth.js';
 
 export default {
     name: "App",
-    components: { Chat },
     data() {
         return{
             user: {
@@ -49,9 +47,6 @@ export default {
                     </li>
                     <li v-if="user.id === null">
                         <router-link to="/registro" class="text-blue-900 font-semibold">Registrarse</router-link>
-                    </li>
-                    <li v-if="user.id !== null">
-                        <router-link to="/chat" class="text-blue-900 font-semibold">Chat</router-link>
                     </li>
                     <li v-if="user.rol == 'admin'">
                         <router-link to="/panel-admin" class="text-blue-900 font-semibold">Admin</router-link>

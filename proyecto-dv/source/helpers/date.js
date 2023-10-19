@@ -1,4 +1,3 @@
-
 export function dateToString(date) {
     if(date == null) return null;
     

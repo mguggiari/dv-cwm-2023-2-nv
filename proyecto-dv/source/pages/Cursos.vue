@@ -12,25 +12,24 @@ export default {
       productosCargando: true,
     };
   },
-  
   methods: {
     cargarProductos() {
-       this.productosCargando = true;
-       getProductos()
-         .then((productos) => {
+      this.productosCargando = true;
+      getProductos()
+        .then((productos) => {
           this.productos = productos;
-       })
+        })
         .catch((error) => {
-           console.error('Error al obtener productos:', error);
-         })
+          console.error('Error al obtener productos:', error);
+        })
         .finally(() => {
-         this.productosCargando = false;
+          this.productosCargando = false;
         });
-     },
-   },
-   mounted() {
-     this.cargarProductos();
-   },
+    },
+  },
+  mounted() {
+    this.cargarProductos();
+  },
 };
 </script>
 

@@ -24,7 +24,7 @@ export default {
                 this.$router.push('/panel-admin');
             } catch (error) {
                 console.log(error);
-            } finally { // Asegura que la carga se desactive incluso si ocurre un error
+            } finally {
                 this.registroProductoCargando = false;
             }
         }

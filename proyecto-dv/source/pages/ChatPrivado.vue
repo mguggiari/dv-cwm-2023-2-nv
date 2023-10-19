@@ -91,7 +91,6 @@ export default {
                 </div>
             </template>
         </div>
-
         <h2 class="sr-only">Enviar mensajes</h2>
         <form
             class="flex gap-2"

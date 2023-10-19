@@ -8,7 +8,6 @@ export default {
   },
 };
 </script>
-
 <template>
   <section class="px-4 py-24 mx-auto max-w-7xl">
     <div class="grid items-center w-full grid-cols-1 gap-10 mx-auto md:w-4/5 lg:grid-cols-2 xl:gap-32">

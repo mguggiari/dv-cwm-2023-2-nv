@@ -36,19 +36,12 @@ export async function createUserProfile(id, data){
 }
 
 export async function getUsersByRol(rol) {
-    // Acceder a la colección de usuarios
     const usuariosRef = collection(db, "usuarios");
-
-    // Filtrar por rol
     const q = query(usuariosRef, where("rol", "==", rol));
-
-    // Obtener los usuarios
     const usuariosSnapshot = await getDocs(q);
-
-    // Retornar los usuarios
+    
     return usuariosSnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
     }));
 }
-

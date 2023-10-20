@@ -13,6 +13,7 @@ export async function enviarMensajeChatPrivado({enviaId, recibeId, mensaje}){
         mensaje,
         created_at: serverTimestamp(),
     });
+
     return true;
 }
 
@@ -41,11 +42,11 @@ export async function guardarMensajeChatPrivado({enviaId, recibeId}, callback){
 }
 
 async function getDocChatPrivado({enviaId, recibeId}){
-    // const cacheRef = getFromCache({enviaId, recibeId});
-    // if(cacheRef) {
-    //     //console.log('chat-privado[46], retornando valor cache');
-    //     return cacheRef;
-    // }
+    const cacheRef = getFromCache({enviaId, recibeId});
+    if(cacheRef) {
+        //console.log('chat-privado[46], retornando valor cache');
+        return cacheRef;
+    }
 
     //console.log('chat-privado[50], buscando doc del chat en firestore');
     const refChatPrivado = collection(db, 'chat-privado');
@@ -73,19 +74,19 @@ async function getDocChatPrivado({enviaId, recibeId}){
         docChatPrivado = snapshot.docs[0];
     }
 
-    //addToCache({enviaId, recibeId}, docChatPrivado);
+    addToCache({enviaId, recibeId}, docChatPrivado);
 
     return docChatPrivado;
 }
 
-// function addToCache({enviaId, recibeId}, value) {
-//     chatPrivadoRefCache[getKeyForCache()] = value;
-// }
+function addToCache({enviaId, recibeId}, value) {
+    chatPrivadoRefCache[getKeyForCache({enviaId, recibeId})] = value;
+}
 
-// function getFromCache({enviaId, recibeId}) {
-//     return chatPrivadoRefCache[getKeyForCache()] || null;
-// }
+function getFromCache({enviaId, recibeId}) {
+    return chatPrivadoRefCache[getKeyForCache({enviaId, recibeId})] || null;
+}
 
-// function getKeyForCache({enviaId, recibeId}) {
-//     return enviaId + recibeId;
-// }
+function getKeyForCache({enviaId, recibeId}) {
+    return enviaId + recibeId;
+}

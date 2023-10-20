@@ -47,6 +47,7 @@ export default {
         this.usuario = await getUserProfileById(this.$route.params.id);
         this.unsuscribeAuth = suscribeToAuth(nuevoUsuario => this.usuarioAutenticado = nuevoUsuario);
         this.usuarioCargado = false;
+
         this.mensajesCargando = true;
         this.unsuscribeMensajes = await guardarMensajeChatPrivado(
             {
@@ -77,9 +78,9 @@ export default {
                     :key="mensaje.id"
                     class="max-w-[70%] p-2 rounded mb-2 "
                     :class="{
-                        'bg-gray-100': mensaje.senderId !== usuarioAutenticado.id,
-                        'bg-green-100': mensaje.senderId === usuarioAutenticado.id,
-                        'self-end': mensaje.senderId === usuarioAutenticado.id,
+                        'bg-gray-100': mensaje.enviaId !== usuarioAutenticado.id,
+                        'bg-green-100': mensaje.enviaId === usuarioAutenticado.id,
+                        'self-end': mensaje.enviaId === usuarioAutenticado.id,
                     }"
                 >
                     <div>

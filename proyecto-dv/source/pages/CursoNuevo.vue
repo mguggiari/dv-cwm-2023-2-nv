@@ -31,6 +31,7 @@ export default {
     },
 };
 </script>
+
 <template>
     <div class="flex justify-center items-center mt-16">
         <div class="bg-white p-8 rounded-md shadow-md w-1/2">

@@ -19,37 +19,47 @@ export default {
 </script>
 
 <template>
+  <section class="grid grid-cols-1 gap-0 bg-blue-100 bg-opacity-25 md:grid-cols-2">
+  <div class="flex flex-col items-start justify-center px-4 py-24 lg:px-20">
+    <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-900 md:text-4xl lg:text-5xl">Great customer relationships start here.</h1>
+    <p class="pr-0 mb-4 text-sm text-blue-800 tracking-relaxed lg:pr-16">Get the #1 Business Messenger and start delivering personalized experiences at every stage of the customer journey.</p>
+  </div>
+  <div>
+    <picture>
+      <source srcset="https://images.unsplash.com/photo-1531548731165-c6ae86ff6491?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80" media="(min-width:768px)">
+      <img class="object-cover w-full h-64 bg-gray-100 md:h-full" alt="persona mirando compu creando una idea" src="https://images.unsplash.com/photo-1531548731165-c6ae86ff6491?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80">
+    </picture>
+  </div>
+</section>
+
   <section class="px-4 py-20 mx-auto max-w-7xl">
-    <div class="bg-[url('./imagenes/banners.png')] bg-contain">
-      <h1>Hola</h1>
-    </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20">
       <div>
         <div class="flex items-center justify-center w-12 h-12 mb-4 bg-blue-100 rounded-full">
           <FontAwesomeIcon :icon="['fas', 'chalkboard']" class="text-2xl text-blue-500" />
         </div>
-        <h3 class="mb-2 text-base font-semibold leading-tight text-gray-900">Docentes capacitados</h3>
+        <p class="mb-2 text-base font-semibold leading-tight text-gray-900">Docentes capacitados</p>
         <p class="text-sm text-gray-500">Docentes capacitados son la clave para una educación de calidad y un futuro brillante para los estudiantes.</p>
       </div>
       <div>
         <div class="flex items-center justify-center w-12 h-12 mb-4  bg-blue-100 rounded-full">
           <FontAwesomeIcon :icon="['fas', 'book']" class="text-2xl text-blue-500" />
         </div>
-        <h3 class="mb-2 text-base font-semibold leading-tight text-gray-900">Aprende a tu ritmo</h3>
+        <p class="mb-2 text-base font-semibold leading-tight text-gray-900">Aprende a tu ritmo</p>
         <p class="text-sm text-gray-500">SAprende a tu ritmo, en línea, y aprovecha la flexibilidad de la educación en línea para alcanzar tus metas de aprendizaje.</p>
       </div>
       <div>
         <div class="flex items-center justify-center w-12 h-12 mb-4  bg-blue-100 rounded-full">
           <FontAwesomeIcon :icon="['fas', 'certificate']" class="text-2xl text-blue-500" />
         </div>
-        <h3 class="mb-2 text-base font-semibold leading-tight text-gray-900">Certificados</h3>
+        <p class="mb-2 text-base font-semibold leading-tight text-gray-900">Certificados</p>
         <p class="text-sm text-gray-500">Obtén certificados reconocidos que validen tus logros y habilidades en tu camino de aprendizaje.</p>
       </div>
       <div>
         <div class="flex items-center justify-center w-12 h-12 mb-4  bg-blue-100 rounded-full">
           <FontAwesomeIcon :icon="['fas', 'comments']" class="text-2xl text-blue-500" />
         </div>
-        <h3 class="mb-2 text-base font-semibold leading-tight text-gray-900">Comparte conocimientos</h3>
+        <p class="mb-2 text-base font-semibold leading-tight text-gray-900">Comparte conocimientos</p>
         <p class="text-sm text-gray-500">Comparte conocimientos y enriquece el aprendizaje colectivo.</p>
       </div>
     </div>

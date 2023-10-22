@@ -7,11 +7,6 @@ library.add(faChalkboard, faBook, faComments, faCertificate);
 
 export default {
   name: "Home",
-  methods: {
-    getImagenUrl(nombreImagen) {
-      return `/imagenes/${nombreImagen}`;
-    },
-  },
   components: {
     FontAwesomeIcon,
   },
@@ -19,19 +14,18 @@ export default {
 </script>
 
 <template>
-  <section class="grid grid-cols-1 gap-0 bg-blue-100 bg-opacity-25 md:grid-cols-2">
-  <div class="flex flex-col items-start justify-center px-4 py-24 lg:px-20">
-    <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-900 md:text-4xl lg:text-5xl">Great customer relationships start here.</h1>
-    <p class="pr-0 mb-4 text-sm text-blue-800 tracking-relaxed lg:pr-16">Get the #1 Business Messenger and start delivering personalized experiences at every stage of the customer journey.</p>
-  </div>
-  <div>
-    <picture>
-      <source srcset="https://images.unsplash.com/photo-1531548731165-c6ae86ff6491?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80" media="(min-width:768px)">
-      <img class="object-cover w-full h-64 bg-gray-100 md:h-full" alt="persona mirando compu creando una idea" src="https://images.unsplash.com/photo-1531548731165-c6ae86ff6491?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80">
-    </picture>
-  </div>
-</section>
-
+  <section class="grid grid-cols-1 gap-0 bg-gradient-to-b from-blue-100 to-white bg-opacity-25 md:grid-cols-2">
+    <div class="flex flex-col items-start justify-center px-4 py-24 lg:px-20">
+      <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Royal English</h1>
+      <p class="pr-0 mb-4 text-sm text-blue-800 tracking-relaxed lg:pr-16">Descubre cómo mejorar tus habilidades en inglés con nosotros. Ofrecemos cursos de inglés de alta calidad para ayudarte a alcanzar tus metas.</p>
+    </div>
+    <div>
+      <picture>
+        <source srcset="/imagenes/banner-home-desktop.svg" media="(min-width:768px)">
+        <img class="object-cover w-full h-64 md:h-full" alt="mujer visualizándose viajando hablando inglés" src="/imagenes/banner-home-mobile.svg">
+      </picture>
+    </div>
+  </section>
   <section class="px-4 py-20 mx-auto max-w-7xl">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20">
       <div>
@@ -46,21 +40,21 @@ export default {
           <FontAwesomeIcon :icon="['fas', 'book']" class="text-2xl text-blue-500" />
         </div>
         <p class="mb-2 text-base font-semibold leading-tight text-gray-900">Aprende a tu ritmo</p>
-        <p class="text-sm text-gray-500">SAprende a tu ritmo, en línea, y aprovecha la flexibilidad de la educación en línea para alcanzar tus metas de aprendizaje.</p>
+        <p class="text-sm text-gray-500">Aprendé a tu ritmo, en línea, y aprovechá la flexibilidad de la educación en línea para alcanzar tus metas de aprendizaje.</p>
       </div>
       <div>
         <div class="flex items-center justify-center w-12 h-12 mb-4  bg-blue-100 rounded-full">
           <FontAwesomeIcon :icon="['fas', 'certificate']" class="text-2xl text-blue-500" />
         </div>
         <p class="mb-2 text-base font-semibold leading-tight text-gray-900">Certificados</p>
-        <p class="text-sm text-gray-500">Obtén certificados reconocidos que validen tus logros y habilidades en tu camino de aprendizaje.</p>
+        <p class="text-sm text-gray-500">Obtené certificados reconocidos que validen tus logros y habilidades en tu camino de aprendizaje.</p>
       </div>
       <div>
         <div class="flex items-center justify-center w-12 h-12 mb-4  bg-blue-100 rounded-full">
           <FontAwesomeIcon :icon="['fas', 'comments']" class="text-2xl text-blue-500" />
         </div>
-        <p class="mb-2 text-base font-semibold leading-tight text-gray-900">Comparte conocimientos</p>
-        <p class="text-sm text-gray-500">Comparte conocimientos y enriquece el aprendizaje colectivo.</p>
+        <p class="mb-2 text-base font-semibold leading-tight text-gray-900">Compartí conocimientos</p>
+        <p class="text-sm text-gray-500">Compartí conocimientos y enriquece el aprendizaje colectivo.</p>
       </div>
     </div>
   </section>
@@ -85,11 +79,11 @@ export default {
           Nuestros valores
         </h2>
         <p class="mb-5 text-base text-center text-gray-600 sm:text-left md:text-lg">
-          En English Courses, nuestra misión es mucho más que enseñar inglés; es inspirar el crecimiento personal y profesional a través del dominio del idioma universal. Nos enorgullece sustentar nuestra labor en valores fundamentales que guían cada paso que damos.
+          En Royal English, nuestra misión es mucho más que enseñar inglés; es inspirar el crecimiento personal y profesional a través del dominio del idioma universal. Nos enorgullece sustentar nuestra labor en valores fundamentales que guían cada paso que damos.
         </p>
       </div>
       <div>
-        <img :src="getImagenUrl('cards-home-01.png')" alt="Foto 1" class="max-w-full h-auto" />
+        <img src="/imagenes/cards-home-01.png" alt="Foto 1" class="max-w-full h-auto" />
       </div>
     </div>
     <div class="grid flex-col-reverse items-center grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-y-32 gap-x-10 md:gap-x-24">
@@ -98,13 +92,13 @@ export default {
           Nuestros cursos
         </h2>
         <p class="mb-5 text-base text-center text-gray-600 sm:text-left md:text-lg">
-          ¿Estás listo para abrir las puertas hacia un futuro lleno de posibilidades? En "English Courses," te invitamos a explorar nuestros emocionantes cursos de inglés que pueden llevar tu aprendizaje y tu carrera al siguiente nivel.
+          ¿Estás listo para abrir las puertas hacia un futuro lleno de posibilidades? En Royal English, te invitamos a explorar nuestros emocionantes cursos de inglés que pueden llevar tu aprendizaje y tu carrera al siguiente nivel.
         </p>
-        <a href="/cursos" class="w-full btn btn-dark btn-lg sm:w-auto">Ver cursos</a>
+        <a href="/cursos" class="bg-blue-100 w-full btn hover:bg-blue-200 text-gray-700 btn-lg sm:w-auto p-3 rounded">Ver cursos</a>
       </div>
       <div>
-        <img :src="getImagenUrl('cards-home-02.png')" alt="Foto 2" class="max-w-full h-auto" />
-      </div>
+        <img src="/imagenes/cards-home-02.png" alt="Foto 2" class="max-w-full h-auto" />
+      </div>    
     </div>
   </section>
 </template>

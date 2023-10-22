@@ -48,8 +48,6 @@ export default {
         <ul class="grid grid-cols-1 gap-16 lg:grid-cols-3 sm:gap-8">
           <li v-for="producto in productos" :key="producto.id" class="border-0 rounded-none shadow-none card sm:shadow-md sm:rounded-lg">
             <div class="flex flex-col justify-between p-6 border-b border-gray-200">
-              <!-- <img src="/imagenes/2.jpg" alt="Tarjeta 2" class="w-full h-124object-cover"> -->
-              <!-- <img :src="'/imagenes/' + producto.img_desktop" :alt="'Imagen de ' + producto.titulo" /> -->
               <p class="mb-1 text-lg font-semibold text-gray-700">$ {{ producto.precio }}</p>
               <p class="pb-0 my-2 font-mono text-4xl font-extrabold text-gray-900 md:pb-2">{{ producto.titulo }}</p>
               <PrimaryButton :loading="productosCargando">Reservar</PrimaryButton>

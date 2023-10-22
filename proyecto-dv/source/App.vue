@@ -41,7 +41,7 @@ export default {
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
                             <a href="/">
-                                <img :src="getImagenUrl('nombre.png')" alt="Logotipo" class="w-16 mx-auto"/>
+                                <img :src="getImagenUrl('logo.png')" alt="Logotipo" class="w-16 mx-auto"/>
                             </a>
                         </div>
                         <div class="hidden md:block">
@@ -50,13 +50,13 @@ export default {
                                 <router-link to="/cursos" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Cursos</router-link>
                                 <router-link v-if="user.id === null" to="/iniciar-sesion" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Iniciar Sesión</router-link>
                                 <router-link v-if="user.id === null" to="/registro" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Registrarse</router-link>
-                                <router-link v-if="user.rol == 'admin'" to="/panel-admin" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Admin</router-link>
+                                <router-link v-if="user.rol == 'admin'" to="/panel-admin" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Administracion Productos</router-link>
                             </div>
                         </div>
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-4 flex items-center md:ml-6">
-                            <router-link v-if="user.rol == 'admin'" to="/perfil-admin" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Perfil Admin</router-link>
+                            <router-link v-if="user.rol == 'admin'" to="/perfil-admin" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Perfil</router-link>
                             <router-link v-if="user.id !== null && user.rol == 'user'" to="/perfil" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Mi Perfil Cliente</router-link>
                             <div v-if="user.id !== null">
                                 <form action="" @submit.prevent="handleLogout">

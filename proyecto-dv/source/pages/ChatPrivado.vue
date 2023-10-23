@@ -68,43 +68,52 @@ export default {
 <template>
     <Loader v-if="usuarioCargado"/>
     <template v-else>
-        <h1>Chat privado {{ usuario.email }}</h1>
-        <h2 class="sr-only">Mensajes</h2>
-        <div class="flex flex-col items-start min-h-[400px] p-4 border border-gray-200 rounded mb-4">
-            <Loader v-if="mensajesCargando" />
-            <template v-else>
-                <div 
-                    v-for="mensaje in mensajes" 
-                    :key="mensaje.id"
-                    class="max-w-[70%] p-2 rounded mb-2 "
-                    :class="{
-                        'bg-gray-100': mensaje.enviaId !== usuarioAutenticado.id,
-                        'bg-green-100': mensaje.enviaId === usuarioAutenticado.id,
-                        'self-end': mensaje.enviaId === usuarioAutenticado.id,
-                    }"
-                >
-                    <div>
-                        {{ mensaje.mensaje }}
-                    </div>
-                    <div class="text-right">
-                        {{ fechaFormateada(mensaje.created_at) || 'Enviando...'}} 
-                    </div>
-                </div>
-            </template>
+        <div class="pb-64 m-1.5">
+            <div class="max-w-7xl px-4 pt-20 mx-auto text-center sm:text-left ">
+                <h1 class="mb-3 text-4xl font-bold leading-tight text-gray-900 md:text-5xl md:font-extrabold">
+                    Chat privado 
+                </h1>
+                <p>{{ usuario.email }}</p>
+                <h2 class="sr-only">Mensajes</h2>
+            </div>
         </div>
-        <h2 class="sr-only">Enviar mensajes</h2>
-        <form
-            class="flex gap-2"
-            action="#"
-            @submit.prevent="manejoEnvioMsj()"
-        >
-            <label for="mensaje" class="sr-only">Mensaje</label>
-            <textarea 
-                id="mensaje"
-                class="w-11/12 resize-none"
-                v-model="nuevoMensaje.mensaje"
-            ></textarea>
-            <PrimaryButton class="w-1/12">Enviar</PrimaryButton>
-        </form>
+        <div class="max-w-7xl pb-20 mx-auto -mt-48">
+            <div class="flex flex-col items-start min-h-[400px] p-4 border border-gray-200 rounded mb-4">
+                <Loader v-if="mensajesCargando" />
+                <template v-else>
+                    <div 
+                        v-for="mensaje in mensajes" 
+                        :key="mensaje.id"
+                        class="max-w-[70%] p-2 rounded mb-2 "
+                        :class="{
+                            'bg-gray-100': mensaje.enviaId !== usuarioAutenticado.id,
+                            'bg-green-100': mensaje.enviaId === usuarioAutenticado.id,
+                            'self-end': mensaje.enviaId === usuarioAutenticado.id,
+                        }"
+                    >
+                        <div>
+                            {{ mensaje.mensaje }}
+                        </div>
+                        <div class="text-right">
+                            {{ fechaFormateada(mensaje.created_at) || 'Enviando...'}} 
+                        </div>
+                    </div>
+                </template>
+            </div>
+            <h2 class="sr-only">Enviar mensajes</h2>
+            <form
+                class="flex gap-2"
+                action="#"
+                @submit.prevent="manejoEnvioMsj()"
+            >
+                <label for="mensaje" class="sr-only">Mensaje</label>
+                <textarea 
+                    id="mensaje"
+                    class="w-11/12 resize-none"
+                    v-model="nuevoMensaje.mensaje"
+                ></textarea>
+                <PrimaryButton class="w-1/12">Enviar</PrimaryButton>
+            </form>
+        </div>
     </template>
 </template>

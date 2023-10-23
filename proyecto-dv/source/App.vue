@@ -57,7 +57,7 @@ export default {
                     <div class="hidden md:block">
                         <div class="ml-4 flex items-center md:ml-6">
                             <router-link v-if="user.rol == 'admin'" to="/perfil-admin" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Perfil</router-link>
-                            <router-link v-if="user.id !== null && user.rol == 'user'" to="/perfil" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Mi Perfil Cliente</router-link>
+                            <router-link v-if="user.id !== null && user.rol == 'user'" to="/perfil" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Mi Perfil</router-link>
                             <div v-if="user.id !== null">
                                 <form action="#" @submit.prevent="handleLogout">
                                     <button type="submit" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">{{ user.email }}Cerrar Sesión</button>

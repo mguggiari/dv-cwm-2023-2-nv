@@ -27,6 +27,7 @@ export default {
     </div>
   </section>
   <section class="px-4 py-20 mx-auto max-w-7xl">
+    <h2 class="sr-only">Sobre Nuestra Plataforma</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-16 lg:gap-x-24 gap-y-20">
       <div>
         <div class="flex items-center justify-center w-12 h-12 mb-4 bg-blue-100 rounded-full">

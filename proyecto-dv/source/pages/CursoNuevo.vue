@@ -11,6 +11,7 @@ export default {
             registroProductoCargando: false,
             nuevoProducto: {
                 titulo: '',
+                duracion: '',
                 precio: '',
                 descripcion: '',
             },
@@ -38,8 +39,12 @@ export default {
             <h1 class="text-3xl mb-4 font-bold">Nuevo Curso</h1>
             <form action="#" @submit.prevent="handleCrearProducto">
                 <div class="mb-4">
-                    <label for="titulo" class="block font-bold mb-2">Titulo</label>
+                    <label for="titulo" class="block font-bold mb-2">Título</label>
                     <input type="text" id="titulo" v-model="nuevoProducto.titulo" class="w-full px-4 py-2 border rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="duracion" class="block font-bold mb-2">Duración</label>
+                    <input type="text" id="duracion" v-model="nuevoProducto.duracion" class="w-full px-4 py-2 border rounded-md">
                 </div>
                 <div class="mb-4">
                     <label for="precio" class="block font-bold mb-2">Precio</label>

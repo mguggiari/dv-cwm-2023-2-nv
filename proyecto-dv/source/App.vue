@@ -59,7 +59,7 @@ export default {
                             <router-link v-if="user.rol == 'admin'" to="/perfil-admin" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Perfil</router-link>
                             <router-link v-if="user.id !== null && user.rol == 'user'" to="/perfil" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Mi Perfil Cliente</router-link>
                             <div v-if="user.id !== null">
-                                <form action="" @submit.prevent="handleLogout">
+                                <form action="#" @submit.prevent="handleLogout">
                                     <button type="submit" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">{{ user.email }}Cerrar Sesión</button>
                                 </form>
                             </div>
@@ -102,7 +102,7 @@ export default {
                     <router-link v-if="user.rol == 'admin'" to="/perfil-admin" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Perfil Admin</router-link>
                     <router-link v-if="user.id !== null && user.rol == 'user'" to="/perfil" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Mi Perfil</router-link>
                     <div v-if="user.id !== null">
-                        <form action="" @submit.prevent="handleLogout">
+                        <form action="#" @submit.prevent="handleLogout">
                             <button type="submit" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium"> <span> {{ user.email }} </span> Cerrar Sesión</button>
                         </form>
                     </div>

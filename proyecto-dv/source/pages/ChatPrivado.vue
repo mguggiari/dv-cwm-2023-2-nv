@@ -95,7 +95,7 @@ export default {
         <h2 class="sr-only">Enviar mensajes</h2>
         <form
             class="flex gap-2"
-            action=""
+            action="#"
             @submit.prevent="manejoEnvioMsj()"
         >
             <label for="mensaje" class="sr-only">Mensaje</label>

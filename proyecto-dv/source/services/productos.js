@@ -14,7 +14,7 @@ export async function getProductos() {
                 ...productoData 
             };
         });
-        //console.log(productos);
+        console.log(productos);
         return productos;
     } catch (error) {
         return {
@@ -39,7 +39,7 @@ export async function getProductoById(id) {
 }
 
 export async function editarProducto(id, producto) {
-    //console.log(id, producto, '[productos.js editarProducto]');
+    console.log(id, producto, '[productos.js editarProducto]');
     const productoRef = doc(db, "productos", id);
     await updateDoc(productoRef, producto);
     return producto;

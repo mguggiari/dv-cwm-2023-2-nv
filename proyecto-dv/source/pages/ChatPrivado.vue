@@ -110,10 +110,10 @@ export default {
                 <label for="mensaje" class="sr-only">Mensaje</label>
                 <PrimaryTextarea 
                     id="mensaje"
-                    class="w-11/12"
+                    class="w-8/12 md:w-11/12"
                     v-model="nuevoMensaje.mensaje"
                 ></PrimaryTextarea>
-                <PrimaryButton class="w-1/12">Enviar</PrimaryButton>
+                <PrimaryButton class="w-4/12 md:w-1/12">Enviar</PrimaryButton>
             </form>
         </div>
     </template>

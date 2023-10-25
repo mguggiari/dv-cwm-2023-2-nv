@@ -5,10 +5,11 @@ import { suscribeToAuth } from '../services/auth';
 import { dateToString } from '../helpers/date.js';
 import Loader from '../components/Loader.vue';
 import PrimaryButton from '../components/PrimaryButton.vue';
+import PrimaryTextarea from '../components/PrimaryTextarea.vue';
 
 export default {
     name: "ChatPrivado",
-    components: { Loader, PrimaryButton },
+    components: { Loader, PrimaryButton, PrimaryTextarea },
     data() {
         return {
             usuarioCargado: true,
@@ -107,11 +108,11 @@ export default {
                 @submit.prevent="manejoEnvioMsj()"
             >
                 <label for="mensaje" class="sr-only">Mensaje</label>
-                <textarea 
+                <PrimaryTextarea 
                     id="mensaje"
-                    class="w-11/12 resize-none"
+                    class="w-11/12"
                     v-model="nuevoMensaje.mensaje"
-                ></textarea>
+                ></PrimaryTextarea>
                 <PrimaryButton class="w-1/12">Enviar</PrimaryButton>
             </form>
         </div>

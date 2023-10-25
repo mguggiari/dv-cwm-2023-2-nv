@@ -50,7 +50,7 @@ export default {
                                 <router-link to="/cursos" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Cursos</router-link>
                                 <router-link v-if="user.id === null" to="/iniciar-sesion" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Iniciar Sesión</router-link>
                                 <router-link v-if="user.id === null" to="/registro" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Registrarse</router-link>
-                                <router-link v-if="user.rol == 'admin'" to="/panel-admin" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Administracion Productos</router-link>
+                                <router-link v-if="user.rol == 'admin'" to="/panel-admin" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Panel Admin</router-link>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@ export default {
                 <router-link to="/cursos" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Cursos</router-link>
                 <router-link v-if="user.id === null" to="/iniciar-sesion" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Iniciar Sesión</router-link>
                 <router-link v-if="user.id === null" to="/registro" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Registrarse</router-link>
-                <router-link v-if="user.rol == 'admin'" to="/panel-admin" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Admin</router-link>
+                <router-link v-if="user.rol == 'admin'" to="/panel-admin" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Panel Admin</router-link>
             </div>
             <div v-if="(user.id !== null && user.rol == 'user') || (user.id !== null && user.rol == 'admin') " class="border-t border-gray-700 pb-3 pt-4">
                 <div class="mt-3 space-y-1 px-2">

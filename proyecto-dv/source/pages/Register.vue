@@ -88,7 +88,7 @@ export default {
             </span>
           </div>
         </div>
-        <PrimaryButton :loading="registroCargando" class="bg-medium-border text-white hover:bg-white hover:text-medium-border">Registrarme</PrimaryButton>
+        <PrimaryButton :loading="registroCargando" class="bg-medium-border text-white hover:bg-white hover:text-medium-border w-full">Registrarme</PrimaryButton>
       </form>
     </div>
   </div>

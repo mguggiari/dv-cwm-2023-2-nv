@@ -1,5 +1,6 @@
 <script>
 import PrimaryButton from '../components/PrimaryButton.vue';
+import PrimaryInput from '../components/PrimaryInput.vue';
 import { login } from '../services/auth.js';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +10,7 @@ library.add(faEye, faEyeSlash);
 
 export default {
   name: "Login",
-  components: { PrimaryButton, FontAwesomeIcon },
+  components: { PrimaryButton, PrimaryInput,FontAwesomeIcon },
   data() {
     return {
       inicioSesionCargando: false,
@@ -44,13 +45,12 @@ export default {
       <form action="#" @submit.prevent="iniciarSesion">
         <div class="mb-4">
           <label for="email" class="block font-bold mb-2">Email</label>
-          <input
+          <PrimaryInput
             :disabled="inicioSesionCargando"
             type="email"
             id="email"
             v-model="form.email"
-            class="w-full px-4 py-2 border rounded-md"
-          >
+          />
         </div>
         <div class="mb-4">
           <label for="password" class="block font-bold mb-2">Contraseña</label>
@@ -71,7 +71,7 @@ export default {
             </span>
           </div>
         </div>
-        <PrimaryButton :loading="inicioSesionCargando">Iniciar Sesión</PrimaryButton>
+        <PrimaryButton :loading="inicioSesionCargando" class="w-full">Iniciar Sesión</PrimaryButton>
       </form>
     </div>
   </div>

@@ -15,7 +15,7 @@ export default {
 
 <template>
     <button 
-        class="bg-red-900 text-white p-2 rounded w-full hover:bg-red-950 active:bg-cyan-700 transition disabled:bg-gray-100 motion-reduce:transition-none" 
+        class="bg-blue-800  text-white p-2 rounded hover:bg-blue-900 active:bg-blue-700 transition disabled:bg-gray-100 motion-reduce:transition-none" 
         type="submit"
         :disabled="loading"
     >
@@ -23,7 +23,7 @@ export default {
             <slot>Enviar</slot>
         </template>
         <template v-else>
-            <Loader />
+            <Loader size="small" />
         </template>
     </button>
 </template>

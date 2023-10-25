@@ -17,7 +17,7 @@ export default {
   <section class="grid grid-cols-1 gap-0 bg-gradient-to-b from-blue-100 to-white bg-opacity-25 md:grid-cols-2">
     <div class="flex flex-col items-start justify-center px-4 py-24 lg:px-20">
       <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Royal English</h1>
-      <p class="pr-0 mb-4 text-sm text-blue-800 tracking-relaxed lg:pr-16">Descubre cómo mejorar tus habilidades en inglés con nosotros. Ofrecemos cursos de inglés de alta calidad para ayudarte a alcanzar tus metas.</p>
+      <p class="pr-0 mb-4 text-sm text-blue-800 tracking-relaxed lg:pr-16">Descubrí cómo mejorar tus habilidades en inglés con nosotros. Ofrecemos cursos de inglés de alta calidad para ayudarte a alcanzar tus metas.</p>
     </div>
     <div>
       <picture>
@@ -54,8 +54,8 @@ export default {
         <div class="flex items-center justify-center w-12 h-12 mb-4  bg-blue-100 rounded-full">
           <FontAwesomeIcon :icon="['fas', 'comments']" class="text-2xl text-blue-500" />
         </div>
-        <p class="mb-2 text-base font-semibold leading-tight text-gray-900">Compartí conocimientos</p>
-        <p class="text-sm text-gray-500">Compartí conocimientos y enriquece el aprendizaje colectivo.</p>
+        <p class="mb-2 text-base font-semibold leading-tight text-gray-900">Atención personalizada</p>
+        <p class="text-sm text-gray-500">Brindamos a cada estudiante un canal directo para resolver consultas, recibir orientación personalizada y garantizar un aprendizaje efectivo y adaptado a sus necesidades.</p>
       </div>
     </div>
   </section>

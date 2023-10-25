@@ -37,7 +37,7 @@ export default {
 
 <template>
     <div class="flex justify-center items-center mt-16">
-        <div class="bg-white p-8 rounded-md shadow-md">
+        <div class="bg-white p-8 rounded-md shadow-md md:w-2/4">
             <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Nuevo Curso</h1>
             <form action="#" @submit.prevent="handleCrearProducto">
                 <div class="mb-4">
@@ -60,7 +60,7 @@ export default {
                         required
                     ></PrimaryTextarea>
                 </div>
-                <PrimaryButton :loading="registroProductoCargando" class="bg-medium-border text-white hover:bg-white hover:text-medium-border">Crear</PrimaryButton>
+                <PrimaryButton :loading="registroProductoCargando" class="bg-medium-border text-white hover:bg-white hover:text-medium-border w-full mt-4">Crear</PrimaryButton>
             </form>
         </div>
     </div>

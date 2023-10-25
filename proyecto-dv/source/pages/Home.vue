@@ -17,7 +17,7 @@ export default {
   <section class="grid grid-cols-1 gap-0 bg-gradient-to-b from-blue-100 to-white bg-opacity-25 md:grid-cols-2">
     <div class="flex flex-col items-start justify-center px-4 py-24 lg:px-20">
       <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Royal English</h1>
-      <p class="pr-0 mb-4 text-sm text-blue-800 tracking-relaxed lg:pr-16">Descubrí cómo mejorar tus habilidades en inglés con nosotros. Ofrecemos cursos de inglés de alta calidad para ayudarte a alcanzar tus metas.</p>
+      <p class="pr-0  text-blue-800 tracking-relaxed lg:pr-16 mb-10 text-lg  md:text-xl">Descubrí cómo mejorar tus habilidades en inglés con nosotros. Ofrecemos cursos de inglés de alta calidad para ayudarte a alcanzar tus metas.</p>
     </div>
     <div>
       <picture>
@@ -76,7 +76,7 @@ export default {
   <section class="px-4 py-24 mx-auto max-w-7xl bg-white">
     <div class="grid items-center grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-y-20 gap-x-10 md:gap-x-24">
       <div>
-        <h2 class="mb-4 text-2xl font-extrabold tracking-tight text-center text-black md:leading-tight sm:text-left md:text-4xl">
+        <h2 class="mb-4 text-2xl font-extrabold tracking-tight text-center text-cyan-950 md:leading-tight sm:text-left md:text-4xl">
           Nuestros valores
         </h2>
         <p class="mb-5 text-base text-center text-gray-600 sm:text-left md:text-lg">
@@ -84,12 +84,12 @@ export default {
         </p>
       </div>
       <div>
-        <img src="/imagenes/cards-home-01.png" alt="Foto 1" class="max-w-full h-auto" />
+        <img src="/imagenes/cards-home-01.png" alt="libro de english language" class="max-w-full h-auto" />
       </div>
     </div>
     <div class="grid flex-col-reverse items-center grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-y-32 gap-x-10 md:gap-x-24">
       <div class="order-none md:order-2">
-        <h2 class="mb-4 text-2xl font-extrabold tracking-tight text-center text-black md:leading-tight sm:text-left md:text-4xl">
+        <h2 class="mb-4 text-2xl font-extrabold tracking-tight text-center text-cyan-950 md:leading-tight sm:text-left md:text-4xl">
           Nuestros cursos
         </h2>
         <p class="mb-5 text-base text-center text-gray-600 sm:text-left md:text-lg">
@@ -98,7 +98,7 @@ export default {
         <a href="/cursos" class="bg-blue-100 w-full btn hover:bg-blue-200 text-gray-700 btn-lg sm:w-auto p-3 rounded">Ver cursos</a>
       </div>
       <div>
-        <img src="/imagenes/cards-home-02.png" alt="Foto 2" class="max-w-full h-auto" />
+        <img src="/imagenes/cards-home-02.png" alt="personas estudiando" class="max-w-full h-auto" />
       </div>    
     </div>
   </section>

@@ -47,8 +47,8 @@ export default {
     <Loader v-if="productoCargando" />
     <template v-else>
         <div class="flex justify-center items-center mt-16">
-            <div class="bg-white p-8 rounded-md shadow-md">
-                <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Editar</h1>
+            <div class="bg-white p-8 rounded-md shadow-md md:w-2/4">
+                <h1 class="mb-6 text-3xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Editar</h1>
                 <form action="#" @submit.prevent="handleEditarProducto">
                     <div class="mb-4">
                         <label for="titulo" class="block font-bold mb-2">Título</label>
@@ -69,7 +69,7 @@ export default {
                             v-model="form.descripcion"
                         ></PrimaryTextarea>
                     </div>
-                    <PrimaryButton>Editar</PrimaryButton>
+                    <PrimaryButton class="w-full mt-4">Editar</PrimaryButton>
                 </form>
             </div>
         </div>

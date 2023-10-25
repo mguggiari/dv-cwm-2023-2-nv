@@ -1,8 +1,16 @@
 <script>
 import { getUsersByRol } from "../services/user.js";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faUser} from '@fortawesome/free-solid-svg-icons';
+
+library.add(faUser);
 
 export default {
     name: "PerfilAdmin",
+    components: {
+        FontAwesomeIcon,
+    },
     data() {
         return {
             users: [],
@@ -29,7 +37,7 @@ export default {
 <template>
     <div class="pb-64">
         <div class="max-w-7xl px-4 pt-20 mx-auto text-center sm:text-left">
-            <h1 class="mb-3 text-4xl font-bold leading-tight text-gray-900 md:text-5xl md:font-extrabold">Mi perfil || Admin</h1>
+            <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Mi perfil || Admin</h1>
         </div>
     </div>
     <div class="max-w-7xl pb-20 mx-auto -mt-48">
@@ -39,7 +47,9 @@ export default {
         <ul v-for="user in users" class="divide-y divide-gray-100">
             <li class="flex justify-between gap-x-6 py-5">
                 <div class="flex min-w-0 gap-x-4">
-                    <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                    <div class="flex items-center justify-center w-12 h-12 mb-4 bg-gray-50 rounded-full">
+                        <FontAwesomeIcon :icon="['fas', 'user']" class="text-2xl text-gray-200" />
+                    </div>
                     <div class="min-w-0 flex-auto">
                         <p class="text-sm font-semibold leading-6 text-gray-900">{{ user.email }}</p>
                         <router-link 

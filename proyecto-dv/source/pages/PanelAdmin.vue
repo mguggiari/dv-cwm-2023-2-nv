@@ -37,7 +37,7 @@ export default {
 <template>
     <div class="pb-64">
         <div class="max-w-7xl px-4 pt-20 mx-auto text-center sm:text-left">
-            <h1 class="mb-3 text-4xl font-bold leading-tight text-gray-900 md:text-5xl md:font-extrabold">Administración de Productos</h1>
+            <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Administración de Productos</h1>
             <router-link class="text-blue-500 hover:underline" to="/curso/nuevo">
                 Crear curso
             </router-link>

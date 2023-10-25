@@ -45,7 +45,7 @@ export default {
 <template>
   <div class="flex justify-center items-center mt-16">
     <div class="bg-white p-8 rounded-md shadow-md">
-      <h1 class="text-3xl mb-4 font-bold">Crea tu cuenta</h1>
+      <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Crea tu cuenta</h1>
       <form action="#" @submit.prevent="handleSubmit">
         <div class="mb-4">
           <label for="email" class="block font-bold mb-2">Email</label>

@@ -1,12 +1,13 @@
 <script>
 import PrimaryButton from '../components/PrimaryButton.vue';
 import Loader from '../components/Loader.vue';
+import PrimaryInput from '../components/PrimaryInput.vue';
 import PrimaryTextarea from '../components/PrimaryTextarea.vue';
 import { crearProducto } from '../services/productos.js'
 
 export default {
     name: "CursoNuevo",
-    components: { PrimaryButton, Loader, PrimaryTextarea },
+    components: { PrimaryButton, Loader, PrimaryTextarea, PrimaryInput },
     data() {
         return {
             registroProductoCargando: false,
@@ -41,15 +42,15 @@ export default {
             <form action="#" @submit.prevent="handleCrearProducto">
                 <div class="mb-4">
                     <label for="titulo" class="block font-bold mb-2">Título</label>
-                    <input type="text" id="titulo" v-model="nuevoProducto.titulo" class="w-full px-4 py-2 border rounded-md">
+                    <PrimaryInput type="text" id="titulo" v-model="nuevoProducto.titulo" />
                 </div>
                 <div class="mb-4">
                     <label for="duracion" class="block font-bold mb-2">Duración</label>
-                    <input type="text" id="duracion" v-model="nuevoProducto.duracion" class="w-full px-4 py-2 border rounded-md">
+                    <PrimaryInput type="text" id="duracion" v-model="nuevoProducto.duracion" />
                 </div>
                 <div class="mb-4">
                     <label for="precio" class="block font-bold mb-2">Precio</label>
-                    <input type="number" id="precio" v-model="nuevoProducto.precio" class="w-full px-4 py-2 border rounded-md">
+                    <PrimaryInput type="number" id="precio" v-model="nuevoProducto.precio" />
                 </div>
                 <div class="form-group">
                     <label for="descripcion" class="block font-bold mb-2">Descripción</label>

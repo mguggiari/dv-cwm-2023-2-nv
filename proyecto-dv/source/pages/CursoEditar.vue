@@ -1,12 +1,13 @@
 <script>
 import PrimaryButton from '../components/PrimaryButton.vue';
 import Loader from '../components/Loader.vue';
+import PrimaryInput from '../components/PrimaryInput.vue';
 import PrimaryTextarea from '../components/PrimaryTextarea.vue';
 import { getProductoById, editarProducto } from '../services/productos.js'
 
 export default {
     name: "CursoEditar",
-    components: { PrimaryButton, Loader, PrimaryTextarea },
+    components: { PrimaryButton, Loader, PrimaryTextarea, PrimaryInput },
     data() {
         return {
             productoCargando: true,
@@ -51,15 +52,15 @@ export default {
                 <form action="#" @submit.prevent="handleEditarProducto">
                     <div class="mb-4">
                         <label for="titulo" class="block font-bold mb-2">Título</label>
-                        <input type="text" id="titulo" v-model="form.titulo" class="w-full px-4 py-2 border rounded-md">
+                        <PrimaryInput type="text" id="titulo" v-model="form.titulo" />
                     </div>
                     <div class="mb-4">
                         <label for="duracion" class="block font-bold mb-2">Duración</label>
-                        <input type="text" id="duracion" v-model="form.duracion" class="w-full px-4 py-2 border rounded-md">
+                        <PrimaryInput type="text" id="duracion" v-model="form.duracion" />
                     </div>
                     <div class="mb-4">
                         <label for="precio" class="block font-bold mb-2">Precio</label>
-                        <input type="number" id="precio" v-model="form.precio" class="w-full px-4 py-2 border rounded-md">
+                        <PrimaryInput type="number" id="precio" v-model="form.precio" />
                     </div>
                     <div class="form-group">
                         <label for="descripcion" class="block font-bold mb-2">Descripción</label>

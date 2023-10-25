@@ -1,5 +1,6 @@
 <script>
 import PrimaryButton from '../components/PrimaryButton.vue';
+import PrimaryInput from '../components/PrimaryInput.vue';
 import { register } from '../services/auth';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -9,7 +10,7 @@ library.add(faEye, faEyeSlash);
 
 export default {
   name: "Register",
-  components: { PrimaryButton, FontAwesomeIcon },
+  components: { PrimaryButton, PrimaryInput,FontAwesomeIcon },
   data() {
     return {
       registroCargando: false,
@@ -48,17 +49,16 @@ export default {
       <form action="#" @submit.prevent="handleSubmit">
         <div class="mb-4">
           <label for="email" class="block font-bold mb-2">Email</label>
-          <input type="email" id="email" v-model="nuevoUsuario.email" class="w-full px-4 py-2 border rounded-md">
+          <PrimaryInput type="email" id="email" v-model="nuevoUsuario.email" />
         </div>
         <div class="mb-4">
           <label for="password" class="block font-bold mb-2">Contraseña</label>
           <div class="relative">
-            <input
+            <PrimaryInput
               :type="showPassword ? 'text' : 'password'"
               id="password"
               v-model="nuevoUsuario.password"
-              class="w-full px-4 py-2 border rounded-md"
-            >
+            />
             <span
               class="absolute right-3 top-3 cursor-pointer"
               @click="showPassword = !showPassword"
@@ -72,12 +72,11 @@ export default {
         <div class="mb-4">
           <label for="confirmPassword" class="block font-bold mb-2">Confirmar Contraseña</label>
           <div class="relative">
-            <input
+            <PrimaryInput
               :type="showConfirmPassword ? 'text' : 'password'"
               id="confirmPassword"
               v-model="confirmPassword"
-              class="w-full px-4 py-2 border rounded-md"
-            >
+            />
             <span
               class="absolute right-3 top-3 cursor-pointer"
               @click="showConfirmPassword = !showConfirmPassword"

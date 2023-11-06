@@ -1,36 +1,31 @@
-<script>
-import { suscribeToAuth, logout } from './services/auth.js';
+<script setup>
+import { useRouter } from 'vue-router';
+import { logout } from './services/auth.js';
+import { ref } from 'vue';
+import { useAuth } from './composition/useAuth.js';
 
-export default {
-    name: "App",
-    data() {
-        return{
-            user: {
-                id: null,
-                email: null,
-                rol: null,
-            },
-            mobileMenuOpen: false,
-        }
-    },
-    methods: {
-        handleLogout(){
-            logout();
-            this.$router.push('/iniciar-sesion');
-        },
-        getImagenUrl(nombreImagen) {
-            return `/imagenes/${nombreImagen}`;
-        },
-        toggleMobileMenu() {
-            this.mobileMenuOpen = !this.mobileMenuOpen;
-        },
-    },
-    mounted() {
-        suscribeToAuth (user =>{
-            this.user = {...user};
-        });
-    }
-};
+const { user } = useAuth();
+const { handleLogout } = useLogout();
+const { mobileMenuOpen, toggleMobileMenu } = useMobileMenu();
+
+function useLogout(){
+    const router = useRouter();
+    const handleLogout = () => {
+        logout();
+        router.push('/iniciar-sesion');
+    };
+
+    return { handleLogout };
+}
+
+function useMobileMenu(){
+    const mobileMenuOpen = ref(false);
+    const toggleMobileMenu = () => {
+        mobileMenuOpen.value = !mobileMenuOpen.value;
+    };
+
+    return { mobileMenuOpen, toggleMobileMenu };
+}
 </script>
 
 <template>
@@ -41,7 +36,7 @@ export default {
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
                             <a href="/">
-                                <img :src="getImagenUrl('logo.png')" alt="Logotipo" class="w-16 mx-auto"/>
+                                <img src="./../public/imagenes/logo.png" alt="Royal English" class="w-16 mx-auto"/>
                             </a>
                         </div>
                         <div class="hidden md:block">

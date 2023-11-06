@@ -1,13 +1,4 @@
-<script>
-import PrimaryButton from '../components/PrimaryButton.vue';
-import PrimaryInput from '../components/PrimaryInput.vue';
-import { login } from '../services/auth.js';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-
-library.add(faEye, faEyeSlash);
-
+<!-- <script>
 export default {
   name: "Login",
   components: { PrimaryButton, PrimaryInput,FontAwesomeIcon },
@@ -36,6 +27,42 @@ export default {
     }
   }
 };
+</script> -->
+
+<script setup>
+import PrimaryButton from '../components/PrimaryButton.vue';
+import PrimaryInput from '../components/PrimaryInput.vue';
+import { login } from '../services/auth.js';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faEye, faEyeSlash);
+
+const router = useRouter();
+
+const inicioSesionCargando = ref(false);
+const form = ref({
+  email: '',
+  password: '',
+});
+const showPassword = ref(false);
+
+const iniciarSesion = async () => {
+  try {
+    inicioSesionCargando.value = true;
+    await login({
+      ...form.value,
+    });
+    router.push('/');
+  } catch (error) {
+    //manejar el error
+  }
+  inicioSesionCargando.value = false;
+}
+
 </script>
 
 <template>

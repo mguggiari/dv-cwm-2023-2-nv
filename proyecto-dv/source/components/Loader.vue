@@ -1,25 +1,21 @@
-<script>
-const sizes = ['small', 'normal'];
+<script setup>
+import { computed } from 'vue';
+import { btn_sizes, btn_size_normal, btn_size_small } from './../constants/constants.js';
 
-export default {name: 'Loader',
-    props: {
-        size: {
-            type: String,
-            default: 'normal',
-            validator: (value) => {
-                return sizes.includes(value);
-            }
-        },
+const props = defineProps({
+    size: {
+        type: String,
+        default: btn_size_normal,
+        validator: value => btn_sizes.includes(value),
     },
-    computed: {
-        loaderClass() {
-            return {
-                'loader-mini': this.size === 'small',
-                'loader': this.size === 'normal' || !sizes.includes(this.size),
-            }
-        }
+});
+
+const loaderClass = computed(() => {
+    return {
+        'loader-mini': props.size === btn_size_small,
+        'loader': props.size === btn_size_normal || !btn_sizes.includes(props.size),
     }
-}
+});
 </script>
 
 <template>

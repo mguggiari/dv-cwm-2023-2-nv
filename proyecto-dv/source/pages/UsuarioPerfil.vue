@@ -1,22 +1,10 @@
 <script setup>
-import { getUserProfileById } from '../services/user';
 import Loader from '../components/Loader.vue';
-import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import { usuarioPerfil } from '../composition/useUserProfile';
 
 const route = useRoute();
-
-const usuarioCargando = ref(true);
-const usuario = ref({
-    id: null,
-    email: null,
-});
-
-onMounted (async () => {
-    usuarioCargando.value = true;
-    usuario.value = await getUserProfileById(route.params.id);
-    usuarioCargando.value = false;
-});
+const { usuario, usuarioCargando } = usuarioPerfil(route.params.id);
 </script>
 
 <template>

@@ -1,73 +1,70 @@
-<script>
-import { getUserProfileById } from '../services/user';
-import { enviarMensajeChatPrivado, guardarMensajeChatPrivado } from '../services/chat-privado';
-import { suscribeToAuth } from '../services/auth';
-import { dateToString } from '../helpers/date.js';
+<script setup>
 import Loader from '../components/Loader.vue';
 import PrimaryButton from '../components/PrimaryButton.vue';
 import PrimaryTextarea from '../components/PrimaryTextarea.vue';
 
-export default {
-    name: "ChatPrivado",
-    components: { Loader, PrimaryButton, PrimaryTextarea },
-    data() {
-        return {
-            usuarioCargado: true,
-            usuario: {
-                id: null,
-                email: null,
-            },
-            usuarioAutenticado:{
-                id: null,
-                email: null,
-            },
-            unsuscribeAuth: () => {},
-            nuevoMensaje: {
-                mensaje: '',
-            }, 
-            mensajesCargando: true,
-            mensajes: [],
-            unsuscribeMensajes: () => {},
-        };
-    },
-    methods: {
-        manejoEnvioMsj() {
-            enviarMensajeChatPrivado({
-                enviaId: this.usuarioAutenticado.id,
-                recibeId: this.usuario.id,
-                mensaje: this.nuevoMensaje.mensaje,
-            });
-            this.nuevoMensaje.mensaje = '';
-        },
-        fechaFormateada(date) {
-            return dateToString(date);
-        }
-    },
-    async mounted() {
-        this.usuarioCargado = true;
-        this.usuario = await getUserProfileById(this.$route.params.id);
-        this.unsuscribeAuth = suscribeToAuth(nuevoUsuario => this.usuarioAutenticado = nuevoUsuario);
-        this.usuarioCargado = false;
+import { enviarMensajeChatPrivado, guardarMensajeChatPrivado } from '../services/chat-privado';
+import { dateToString } from '../helpers/date.js';
+import { useAuth } from '../composition/useAuth';
+import { usuarioPerfil } from '../composition/useUserProfile';
+import { onUnmounted, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
-        this.mensajesCargando = true;
-        this.unsuscribeMensajes = await guardarMensajeChatPrivado(
-            {
-                enviaId: this.usuarioAutenticado.id,
-                recibeId: this.usuario.id,
-            },
-            (nuevosMensajes) => this.mensajes = nuevosMensajes
-        );
-        this.mensajesCargando = false;
-    },
-    unmounted() {
-        this.unsuscribeAuth();
-        this.unsuscribeMensajes();
-    },
-};
+const route = useRoute();
+const { user: usuarioAutenticado } = useAuth();
+const { usuario, usuarioCargando } = usuarioPerfil(route.params.id);
+const { nuevoMensaje, mensajes, mensajesCargando, manejoEnvioMsj } = useChatPrivado(usuarioAutenticado, usuario);
+//console.log('usuarioAutenticado:', usuarioAutenticado);
+//console.log('usuario:', usuario);
+
+function useChatPrivado(enviaUsuario, recibeUsuario) {
+    //console.log('enviaUsuario:', enviaUsuario);
+    //console.log('recibeUsuario:', recibeUsuario);
+    const nuevoMensaje = ref({
+        mensaje: '',
+    });
+    const mensajesCargando = ref(true);
+    const mensajes = ref([]);
+    let unsuscribeMensajes = () => {};
+    
+    async function manejoEnvioMsj() {
+        //console.log('enviaUsuario en manejoEnvioMsj:', enviaUsuario);
+        //console.log('recibeUsuario en manejoEnvioMsj:', recibeUsuario);
+        enviarMensajeChatPrivado({
+            enviaId: enviaUsuario.value.id,
+            recibeId: recibeUsuario.value.id,
+            mensaje: nuevoMensaje.value.mensaje,
+        });
+        nuevoMensaje.value.mensaje = '';
+    }
+    
+    watch(recibeUsuario, async nuevoRecibeUsuario => {
+        if (nuevoRecibeUsuario.id !== null){
+            unsuscribeMensajes = await guardarMensajeChatPrivado(
+                {
+                    enviaId: enviaUsuario.value.id,
+                    recibeId: nuevoRecibeUsuario.id,
+
+                }, 
+                nuevosMensajes => mensajes.value = nuevosMensajes
+            );
+            mensajesCargando.value = false;
+        }
+    });
+
+    onUnmounted(() => unsuscribeMensajes());
+
+    return {
+        nuevoMensaje,
+        mensajes,
+        mensajesCargando,
+        manejoEnvioMsj,
+    };
+}
 </script>
 
 <template>
-    <Loader v-if="usuarioCargado"/>
+    <Loader v-if="usuarioCargando"/>
     <template v-else>
         <div class="pb-64 m-1.5">
             <div class="max-w-7xl px-4 pt-20 mx-auto text-center sm:text-left ">
@@ -96,7 +93,7 @@ export default {
                             {{ mensaje.mensaje }}
                         </div>
                         <div class="text-right">
-                            {{ fechaFormateada(mensaje.created_at) || 'Enviando...'}} 
+                            {{ dateToString(mensaje.created_at) || 'Enviando...'}} 
                         </div>
                     </div>
                 </template>

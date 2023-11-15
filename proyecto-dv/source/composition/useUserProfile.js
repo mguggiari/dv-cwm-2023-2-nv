@@ -6,6 +6,8 @@ export function usuarioPerfil(id) {
     const usuario = ref({
         id: null,
         email: null,
+        displayName: null,
+        photoUrl: null,
     });
 
     onMounted(async () => {

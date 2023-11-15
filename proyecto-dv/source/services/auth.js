@@ -1,11 +1,15 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut} from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from "firebase/auth";
 import { auth } from "./firebase";
-import { createUserProfile, getUserById } from './user.js';
+import { createUserProfile, getUserById, updateUserProfile } from './user.js';
+import { uploadFile, getFileUrl } from "../services/file-storage";
 
 let userData = {
     id: null,
     email: null,
     rol: null,
+    displayName: null,
+    photoUrl: null,
+    fullProfileLoaded: false,
 }
 
 let observers = [];
@@ -19,15 +23,19 @@ onAuthStateChanged(auth, user => {
         setUserData({
             id: user.uid,
             email: user.email,
+            displayName: user.displayName,
+            photoUrl: user.photoURL,
         });
         getUserById(user.uid).then((userData) => {
-            setUserData({...userData});
+            setUserData({
+                fullProfileLoaded: true,
+                ...userData
+            });
         });
         //console.log(userData, '[linea23]');  
-        localStorage.setItem('user', JSON.stringify(userData));
     } else {
         clearUserData();
-        localStorage.removeItem('user')
+        localStorage.removeItem('user');
     }
 })
 
@@ -70,6 +78,34 @@ export function login ({email, password}) {
         });
 }
 
+export async function editProfile({displayName, photoUrl}) {
+    try {
+        const data = {};
+        if(displayName !== undefined) data.displayName = displayName;
+        if(photoUrl !== undefined) data.photoUrl = photoUrl;
+
+        //firebase 
+        const promiseAuth = updateProfile(auth.currentUser, data);
+    
+        //firestore
+        const promiseProfile = updateUserProfile(userData.id, data);
+    
+        await Promise.all([promiseAuth, promiseProfile]);
+
+        setUserData(data);
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function editProfilePhoto(file) {
+    const path = `users/${userData.id}/foto`;
+    await uploadFile(path, file);
+    const photoUrl = await getFileUrl(path);
+
+    return editProfile({photoUrl});
+}
+
 export function logout() {
     return signOut(auth);
 }
@@ -95,6 +131,7 @@ function setUserData(newData){
         ...userData,
         ...newData
     }
+    localStorage.setItem('user', JSON.stringify(userData));
     notifyAll();
 }
 
@@ -103,7 +140,11 @@ function clearUserData() {
         id: null,
         email: null,
         rol: null,
+        displayName: null,
+        photoUrl: null,
+        fullProfileLoaded: false,
     });
+    localStorage.removeItem('user');
 }
 
 export function getUserData()

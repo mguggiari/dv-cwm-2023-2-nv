@@ -6,7 +6,7 @@ service cloud.firestore {
     match /usuarios/{usuario}  {
       allow read: if request.auth != null;
       
-      allow create: if 
+      allow create, update: if 
       	request.auth != null &&
         request.auth.uid == usuario;
     }

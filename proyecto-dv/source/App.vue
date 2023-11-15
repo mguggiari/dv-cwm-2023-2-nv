@@ -36,7 +36,7 @@ function useMobileMenu(){
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
                             <a href="/">
-                                <img src="./../public/imagenes/logo.png" alt="Royal English" class="w-16 mx-auto"/>
+                                <img src="/imagenes/logo.png" alt="Royal English" class="w-16 mx-auto"/>
                             </a>
                         </div>
                         <div class="hidden md:block">

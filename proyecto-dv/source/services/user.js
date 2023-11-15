@@ -1,4 +1,4 @@
-import { setDoc, getDoc, doc, where, getDocs, collection, query  } from "firebase/firestore";
+import { setDoc, getDoc, doc, where, getDocs, collection, query, updateDoc  } from "firebase/firestore";
 import { db } from "./firebase.js";
 
 export async function getUserById(id) {
@@ -15,7 +15,7 @@ export async function getUserById(id) {
     };
 }
 
-export async function getUserProfileById(id){
+export async function getUserProfileById(id) {
     if(id !== null && id !== '') {
         const refUsuario = doc(db, `usuarios/${id}`);
         const snapshot = await getDoc(refUsuario);
@@ -24,15 +24,24 @@ export async function getUserProfileById(id){
             id: snapshot.id,
             email: snapshot.data().email,
             rol: snapshot.data().rol,
+            displayName: snapshot.data().displayName,
+            photoUrl: snapshot.data().photoUrl,
         }
     } else {
         console.log('getUserProfileById: id es null o vacio');
     }
 }
 
-export async function createUserProfile(id, data){
+export async function createUserProfile(id, data) {
     const refUsuario = doc(db, `usuarios/${id}`);
     return setDoc(refUsuario, {...data});
+}
+
+export async function updateUserProfile(id, data) {
+    return updateDoc(
+        doc(db, `usuarios/${id}`),
+        {...data}
+    );
 }
 
 export async function getUsersByRol(rol) {

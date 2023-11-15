@@ -6,6 +6,8 @@ export function useAuth () {
         id: null,
         email: null,
         rol: null,
+        displayName: null,
+        fullProfileLoaded: false,
     });
     let unsuscribeAuth;
     

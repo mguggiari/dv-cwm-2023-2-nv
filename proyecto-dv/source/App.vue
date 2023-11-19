@@ -1,11 +1,28 @@
 <script setup>
+import { provide, readonly, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { logout } from './services/auth.js';
-import { ref } from 'vue';
 import { useAuth } from './composition/useAuth.js';
+import { notificacionSymbol } from './symbols/symbols';
 
-const { user } = useAuth();
+const notificacion = ref({
+    mensaje: null,
+    type: 'success'
+});
+
+function setNotificacion(data){
+    notificacion.value = data;
+}
+
+provide(notificacionSymbol, {
+    notificacion: readonly(notificacion),
+    setNotificacion,
+    setNotificacionSuccess: mensaje => setNotificacion({ mensaje, type: 'success' }),
+    setNotificacionError: mensaje => setNotificacion({ mensaje, type: 'error' }),
+});
+
 const { handleLogout } = useLogout();
+const { user } = useAuth();
 const { mobileMenuOpen, toggleMobileMenu } = useMobileMenu();
 
 function useLogout(){
@@ -107,6 +124,12 @@ function useMobileMenu(){
         </nav>
     </header>
     <div>
+        <div
+            v-if="notificacion.mensaje != null"
+            class="bg-green-200 text-black text-center py-2 px-4 rounded-md"
+        >
+            {{ notificacion.mensaje }}
+        </div>
         <router-view></router-view>
     </div>
     <footer class="flex justify-center h-[100px] items-center text-white bg-blue-950">

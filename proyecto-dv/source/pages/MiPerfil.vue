@@ -3,9 +3,12 @@ import PrimaryButton from "../components/PrimaryButton.vue";
 import PrimaryInput from "../components/PrimaryInput.vue";
 import Loader from "../components/Loader.vue";
 import UserProfileData from "../components/UserProfileData.vue";
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import { useAuth } from "../composition/useAuth";
 import { editProfile, editProfilePhoto } from "../services/auth";
+import { notificacionSymbol } from "../symbols/symbols";
+
+const { setNotificacion } = inject(notificacionSymbol);
 
 const { user } = useAuth();
 
@@ -28,7 +31,6 @@ const {
     manejoCambioFoto 
 } = editarFoto();
 
-
 function editarPerfil(user) {
     const editando = ref(false);
     const edicionCargando = ref(false);
@@ -47,9 +49,17 @@ function editarPerfil(user) {
             await editProfile({
                 displayName: editData.value.displayName,
             });
+
+            setNotificacion({
+                mensaje: 'Perfil editado con éxito',
+                type: 'success',
+            });
         } catch (error) {
-            console.error(error);
-            //notificaciones
+            //console.error(error);
+            setNotificacion({
+                mensaje: error,
+                type: 'error',
+            });
         } 
         edicionCargando.value = false;
     }

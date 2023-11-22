@@ -17,7 +17,9 @@ export default {
   <section class="grid grid-cols-1 gap-0 bg-gradient-to-b from-blue-100 to-white bg-opacity-25 md:grid-cols-2">
     <div class="flex flex-col items-start justify-center px-4 py-24 lg:px-20">
       <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Royal English</h1>
-      <p class="pr-0  text-blue-800 tracking-relaxed lg:pr-16 mb-10 text-lg  md:text-xl">Descubrí cómo mejorar tus habilidades en inglés con nosotros. Ofrecemos cursos de inglés de alta calidad para ayudarte a alcanzar tus metas.</p>
+      <p class="pr-0  text-blue-800 tracking-relaxed lg:pr-16 mb-10 text-lg  md:text-xl">
+        Descubrí cómo mejorar tus habilidades en inglés con nosotros. Ofrecemos cursos de inglés de alta calidad para ayudarte a alcanzar tus metas.
+      </p>
     </div>
     <div>
       <picture>
@@ -40,7 +42,7 @@ export default {
         <div class="flex items-center justify-center w-12 h-12 mb-4  bg-blue-100 rounded-full">
           <FontAwesomeIcon :icon="['fas', 'book']" class="text-2xl text-blue-500" />
         </div>
-        <p class="mb-2 text-base font-semibold leading-tight text-gray-900">Aprende a tu ritmo</p>
+        <p class="mb-2 text-base font-semibold leading-tight text-gray-900">Aprendé a tu ritmo</p>
         <p class="text-sm text-gray-500">Aprendé a tu ritmo, en línea, y aprovechá la flexibilidad de la educación en línea para alcanzar tus metas de aprendizaje.</p>
       </div>
       <div>
@@ -62,7 +64,7 @@ export default {
   <section class="w-full  bg-blue-100">
     <div class="w-full px-4 py-20 mx-auto text-left md:text-center md:w-3/4 lg:w-2/4">
       <p class="mb-2  font-semibold text-cyan-950">Registrate para obtener una cuenta gratuita y organizá tus cursos</p>
-      <h2 class="mb-6 text-3xl font-bold text-gray-800 tracking-tight md:text-4xl md:mb-6 md:leading-tight">Descubre la excelencia educativa con nuestros docentes capacitados.</h2>
+      <h2 class="mb-6 text-3xl font-bold text-gray-800 tracking-tight md:text-4xl md:mb-6 md:leading-tight">Descubrí la excelencia educativa con nuestros docentes capacitados.</h2>
       <div class="mb-0 space-x-0 md:space-x-2">
         <a class="inline-flex items-center justify-center w-full mb-2 btn btn-primary btn-lg sm:w-auto sm:mb-0" href="/cursos">
           Empezar

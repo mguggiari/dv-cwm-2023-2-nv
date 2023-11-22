@@ -20,7 +20,7 @@ export default {
         </div>
       </div>
       <div>
-        <h1 class="mb-4 text-2xl font-extrabold leading-tight tracking-tight text-left text-gray-900 md:text-4xl">¡Ups! Ha ocurrido un error...</h1>
+        <h1 class="mb-4 text-2xl font-extrabold leading-tight tracking-tight text-left text-gray-900 md:text-4xl">¡Ups! Ocurrió un error...</h1>
         <p class="mb-5 text-base text-left text-gray-800 md:text-xl">Te invitamos a ver nuestros cursos mientras trabajamos en ello</p>
         <a href="/cursos" class="bg-blue-100 w-full btn hover:bg-blue-200 text-gray-700 btn-lg sm:w-auto p-3 rounded">Ver cursos</a>
       </div>

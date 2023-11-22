@@ -39,7 +39,7 @@ export default {
       <div class="max-w-7xl px-4 pt-20 mx-auto text-center sm:text-left">
         <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Cursos</h1>
         <p class="mb-10 text-lg text-gray-600 md:text-xl">
-          Busca tu curso ideal, resérvalo y nos pondremos en contacto para brindarte más información. 
+          Buscá tu curso ideal, reservalo y nos pondremos en contacto para brindarte más información. 
         </p>
       </div>
     </div>

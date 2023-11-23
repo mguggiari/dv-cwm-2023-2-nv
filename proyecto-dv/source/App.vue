@@ -43,6 +43,22 @@ function useMobileMenu(){
 
     return { mobileMenuOpen, toggleMobileMenu };
 }
+
+const { adminMenuOpen, toggleAdminMenu } = useAdminMenu(); // Nueva función para el menú admin
+
+function useAdminMenu(){
+    const adminMenuOpen = ref(false);
+    const toggleAdminMenu = () => {
+        adminMenuOpen.value = !adminMenuOpen.value;
+    };
+
+    // Cerrar el menú admin al hacer clic fuera de él
+    const closeAdminMenu = () => {
+        adminMenuOpen.value = false;
+    };
+
+    return { adminMenuOpen, toggleAdminMenu, closeAdminMenu };
+}
 </script>
 
 <template>
@@ -62,7 +78,47 @@ function useMobileMenu(){
                                 <router-link to="/cursos" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Cursos</router-link>
                                 <router-link v-if="user.id === null" to="/iniciar-sesion" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Iniciar Sesión</router-link>
                                 <router-link v-if="user.id === null" to="/registro" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Registrarse</router-link>
-                                <router-link v-if="user.rol == 'admin'" to="/panel-admin" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Panel Admin</router-link>
+                                <div class="relative" v-if="user.rol == 'admin'">
+                                    <button 
+                                        type="button" 
+                                        class="text-blue-950 hover:bg-neutral-400 hover:text-white  rounded-md px-3 py-2 text-base font-medium inline-flex items-center gap-x-1 " 
+                                        aria-expanded="false"
+                                        @click="toggleAdminMenu"
+                                    >
+                                        Panel Admin
+                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                    <div 
+                                        class="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4"
+                                        v-show="adminMenuOpen" 
+                                        @click="closeAdminMenu"
+                                    >
+                                        <div class="w-64 max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+                                            <div class="p-4">
+                                                <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                                                    <a href="/panel-productos" class="font-semibold text-gray-900">
+                                                        Cursos
+                                                        <span class="absolute inset-0"></span>
+                                                    </a>
+                                                </div>
+                                                <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                                                    <a href="/panel-usuarios" class="font-semibold text-gray-900">
+                                                        Usuarios
+                                                        <span class="absolute inset-0"></span>
+                                                    </a>
+                                                </div>
+                                                <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                                                    <a href="/panel-reservas" class="font-semibold text-gray-900">
+                                                        Reservas
+                                                        <span class="absolute inset-0"></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -107,7 +163,24 @@ function useMobileMenu(){
                 <router-link to="/cursos" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Cursos</router-link>
                 <router-link v-if="user.id === null" to="/iniciar-sesion" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Iniciar Sesión</router-link>
                 <router-link v-if="user.id === null" to="/registro" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Registrarse</router-link>
-                <router-link v-if="user.rol == 'admin'" to="/panel-admin" class="text-blue-950 hover:bg-neutral-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Panel Admin</router-link>
+                <div class="relative" v-if="user.rol == 'admin'">
+                    <button type="button" class="text-blue-950 hover:bg-neutral-400 hover:text-white rounded-md px-3 py-2 text-base font-medium inline-flex" aria-controls="disclosure-1" aria-expanded="false" @click="toggleAdminMenu">
+                        Panel Admin
+                        <svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div 
+                        class="mt-2 space-y-2" 
+                        id="disclosure-1" 
+                        v-show="adminMenuOpen" 
+                        @click="closeAdminMenu"
+                    >
+                        <a href="/panel-productos" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Productos</a>
+                        <a href="/panel-usuarios" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Usuarios</a>
+                        <a href="/panel-reservas" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Reservas</a>
+                    </div>   
+                </div>
             </div>
             <div v-if="(user.id !== null && user.rol == 'user') || (user.id !== null && user.rol == 'admin') " class="border-t border-gray-700 pb-3 pt-4">
                 <div class="mt-3 space-y-1 px-2">

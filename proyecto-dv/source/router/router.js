@@ -5,8 +5,9 @@ import Login from './../pages/Login.vue';
 import MiPerfil from './../pages/MiPerfil.vue';
 import UsuarioPerfil from './../pages/UsuarioPerfil.vue';
 import ChatPrivado from './../pages/ChatPrivado.vue';
-import PanelAdmin from './../pages/PanelAdmin.vue';
-import PerfilAdmin from './../pages/PerfilAdmin.vue';
+import PanelProductos from './../pages/PanelProductos.vue';
+import PanelUsuarios from './../pages/PanelUsuarios.vue';
+import PanelReservas from './../pages/PanelReservas.vue';
 import CursoEditar from './../pages/CursoEditar.vue';
 import CursoNuevo from './../pages/CursoNuevo.vue';
 import Error from './../pages/404.vue';
@@ -58,16 +59,24 @@ const routes = [
         }, 
     },
     { 
-        path: '/panel-admin',    
-        component: PanelAdmin,     
+        path: '/panel-productos',    
+        component: PanelProductos,     
         meta: {
             requiresAuth: true,
             requiresAdmin: true,
         }, 
     },
     { 
-        path: '/perfil-admin',    
-        component: PerfilAdmin,     
+        path: '/panel-usuarios',    
+        component: PanelUsuarios,     
+        meta: {
+            requiresAuth: true,
+            requiresAdmin: true,
+        }, 
+    },
+    { 
+        path: '/panel-reservas',    
+        component: PanelReservas,     
         meta: {
             requiresAuth: true,
             requiresAdmin: true,

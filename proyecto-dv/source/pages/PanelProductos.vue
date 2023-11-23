@@ -1,25 +1,23 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { getProductos, deshabilitarProducto, habilitarProducto } from '../services/productos';
-import { getReservas } from '../services/user';
 import LoadingContext from '../components/LoadingContext.vue';
 import Modal from '../components/Modal.vue';
 
 const productos = ref([]);
 const productosCargando = ref(true);
 const productoSeleccionado = ref(null);
-const reservas = ref([]);
 
 const cargarProductos = async () => {
-  productosCargando.value = true;
-  try {
-    const productosData = await getProductos();
-    productos.value = productosData;
-  } catch (error) {
-    console.error("Error al obtener productos:", error);
-  } finally {
-    productosCargando.value = false;
-  }
+    productosCargando.value = true;
+    try {
+        const productosData = await getProductos();
+        productos.value = productosData;
+    } catch (error) {
+        console.error("Error al obtener productos:", error);
+    } finally {
+        productosCargando.value = false;
+    }
 };
 
 const actualizarEstadoProducto = async (id, deshabilitado) => {
@@ -63,18 +61,13 @@ onMounted(async () => {
     } catch (error) {
         console.error("Error al obtener datos:", error);
     }
-    try {
-        reservas.value = await getReservas();
-    } catch (error) {
-        console.error("Error al obtener datos:", error);
-    }
 });
 </script>
 
 <template>
     <div class="pb-64">
         <div class="max-w-7xl px-4 pt-20 mx-auto text-center sm:text-left">
-            <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Administración de Productos</h1>
+            <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Administrar productos</h1>
             <router-link class="bg-blue-100 w-full btn hover:bg-blue-200 text-gray-700 btn-lg sm:w-auto p-3 rounded" to="/curso/nuevo">
                 Crear curso
             </router-link>
@@ -138,9 +131,4 @@ onMounted(async () => {
         :modalClass="productoSeleccionado.deshabilitado ? 'success' : 'error'"
         @closeModal="productoSeleccionado = null"
     />
-
-    <div v-for="reserva in reservas">
-        <p>{{ reserva.productoReservado.titulo }}</p>
-        <p>{{ reserva.usuarioReservado.email }}</p>
-    </div>
 </template> 

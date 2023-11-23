@@ -44,7 +44,7 @@ function useMobileMenu(){
     return { mobileMenuOpen, toggleMobileMenu };
 }
 
-const { adminMenuOpen, toggleAdminMenu } = useAdminMenu(); // Nueva función para el menú admin
+const { adminMenuOpen, toggleAdminMenu } = useAdminMenu(); 
 
 function useAdminMenu(){
     const adminMenuOpen = ref(false);
@@ -68,9 +68,9 @@ function useAdminMenu(){
                 <div class="flex h-16 items-center justify-between">
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
-                            <a href="/">
+                            <router-link to="/">
                                 <img src="/imagenes/logo.png" alt="Royal English" class="w-16 mx-auto"/>
-                            </a>
+                            </router-link>
                         </div>
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
@@ -98,22 +98,19 @@ function useAdminMenu(){
                                         <div class="w-64 max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
                                             <div class="p-4">
                                                 <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
-                                                    <a href="/panel-productos" class="font-semibold text-gray-900">
+                                                    <router-link to="/panel-productos" class="font-semibold text-gray-900">
                                                         Cursos
-                                                        <span class="absolute inset-0"></span>
-                                                    </a>
+                                                    </router-link>
                                                 </div>
                                                 <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
-                                                    <a href="/panel-usuarios" class="font-semibold text-gray-900">
+                                                    <router-link to="/panel-usuarios" class="font-semibold text-gray-900">
                                                         Usuarios
-                                                        <span class="absolute inset-0"></span>
-                                                    </a>
+                                                    </router-link>
                                                 </div>
                                                 <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
-                                                    <a href="/panel-reservas" class="font-semibold text-gray-900">
+                                                    <router-link to="/panel-reservas" class="font-semibold text-gray-900">
                                                         Reservas
-                                                        <span class="absolute inset-0"></span>
-                                                    </a>
+                                                    </router-link>
                                                 </div>
                                             </div>
                                         </div>
@@ -175,9 +172,15 @@ function useAdminMenu(){
                         v-show="adminMenuOpen" 
                         @click="closeAdminMenu"
                     >
-                        <a href="/panel-productos" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Productos</a>
-                        <a href="/panel-usuarios" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Usuarios</a>
-                        <a href="/panel-reservas" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Reservas</a>
+                        <router-link to="/panel-productos" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                            Cursos
+                        </router-link>
+                        <router-link to="/panel-usuarios" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                            Usuarios
+                        </router-link>
+                        <router-link to="/panel-reservas" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                            Reservas
+                        </router-link>
                     </div>   
                 </div>
             </div>

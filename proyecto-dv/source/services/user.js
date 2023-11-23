@@ -105,7 +105,7 @@ export async function cancelarReservaById(reservaId){
     //console.log('cancelarReservaById reservaId', reservaId);
     const reservaRef = doc(db, "reservas", reservaId);
     const reservaData = updateDoc(reservaRef, {
-        estado: 'cancelada',
+        estado: 'Cancelada',
         timestampCancelacion: serverTimestamp(),
     });
     //console.log('cancelarReservaById reservaData', reservaData);

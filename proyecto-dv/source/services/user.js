@@ -1,5 +1,6 @@
-import { setDoc, getDoc, doc, where, getDocs, collection, query, updateDoc  } from "firebase/firestore";
+import { setDoc, getDoc, doc, where, getDocs, collection, query, updateDoc, addDoc, serverTimestamp  } from "firebase/firestore";
 import { db } from "./firebase.js";
+import { getProductoById } from "./productos.js";
 
 export async function getUserById(id) {
     const userRef = doc(db, "usuarios", id);
@@ -53,4 +54,61 @@ export async function getUsersByRol(rol) {
         id: doc.id,
         ...doc.data(),
     }));
+}
+
+export async function reserveProduct(productoId, usuarioId) {
+    try {
+        const producto = await getProductoById(productoId);
+        const usuario = await getUserById(usuarioId);
+        // Realizar la reserva en la colección "reservas" en Firebase
+        const reservaRef = await addDoc(collection(db, 'reservas'), {
+            productoReservado: producto,
+            usuarioReservado: usuario,
+            timestamp: serverTimestamp(),
+        });
+        console.log('Reserva realizada con éxito. ID:', reservaRef);
+        return reservaRef.id; // Puedes devolver el ID de la reserva si es necesario
+    } catch (error) {
+        console.error('Error al realizar la reserva:', error.message);
+        throw new Error('Error al realizar la reserva');
+    }
+}
+
+export async function getReservasByUserId(usuarioId) {
+    console.log('getReservasByUserId id', usuarioId);
+    const reservasRef = collection(db, "reservas");
+    const q = query(reservasRef, where("usuarioReservado.id", "==", usuarioId));
+    const reservasSnapshot = await getDocs(q);
+
+    console.log('getReservasByUserId reservasSnapshot', reservasSnapshot);
+
+    return reservasSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
+}
+
+export async function getReservas(){
+    const reservasRef = collection(db, "reservas");
+    const reservasSnapshot = await getDocs(reservasRef);
+    
+    const reservas = reservasSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
+    console.log('getReservas', reservas);
+    
+    return reservas;
+}
+
+export async function cancelarReservaById(reservaId){
+    console.log('cancelarReservaById reservaId', reservaId);
+    const reservaRef = doc(db, "reservas", reservaId);
+    //agregar un campo con el estado de la reserva (cancelada)
+    const reservaData = updateDoc(reservaRef, {
+        estado: 'cancelada',
+        timestampCancelacion: serverTimestamp(),
+    });
+    //console.log('cancelarReservaById reservaData', reservaData);
+    return reservaData;
 }

@@ -1,37 +1,38 @@
-<script>
-import { getProductos, getProductoById } from '../services/productos';
-export default {
-    name: "PanelAdmin",
-    data() {
-        return {
-            productos: [],
-            productosCargando: true,
-            mobileMenuOpen: false,
-        };
-    },
-    methods: {
-        cargarProductos() {
-            this.productosCargando = true;
-            getProductos()
-                .then((productos) => {
-                    this.productos = productos;
-                    console.log(productos);
-                })
-                .catch((error) => {
-                    console.error('Error al obtener productos:', error);
-                })
-                .finally(() => {
-                    this.productosCargando = false;
-                });
-        },
-        toggleMobileMenu() {
-            this.mobileMenuOpen = !this.mobileMenuOpen;
-        },
-    },
-    mounted() {
-        this.cargarProductos();
-    },
+<script setup>
+import { ref, onMounted } from 'vue';
+import { getProductos } from '../services/productos';
+import { getReservas } from '../services/user';
+
+const productos = ref([]);
+const productosCargando = ref(true);
+const mobileMenuOpen = ref(false);
+
+const reservas = ref([]);
+
+const cargarProductos = async () => {
+    productosCargando.value = true;
+    try {
+        const productosData = await getProductos();
+        productos.value = productosData;
+    } catch (error) {
+        console.error("Error al obtener productos:", error);
+    } finally {
+        productosCargando.value = false;
+    }
 };
+
+onMounted(async () => {
+    try {
+        await cargarProductos();
+    } catch (error) {
+        console.error("Error al obtener datos:", error);
+    }
+    try {
+        reservas.value = await getReservas();
+    } catch (error) {
+        console.error("Error al obtener datos:", error);
+    }
+});
 </script>
 
 <template>
@@ -76,5 +77,8 @@ export default {
         </div>
     </div>
     </div>
-    
+    <div v-for="reserva in reservas">
+        <p>{{ reserva.productoReservado.titulo }}</p>
+        <p>{{ reserva.usuarioReservado.email }}</p>
+    </div>
 </template> 

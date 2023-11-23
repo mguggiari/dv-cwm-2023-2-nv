@@ -2,7 +2,6 @@
 import Loader from '../components/Loader.vue';
 import PrimaryButton from '../components/PrimaryButton.vue';
 import PrimaryTextarea from '../components/PrimaryTextarea.vue';
-
 import { enviarMensajeChatPrivado, guardarMensajeChatPrivado } from '../services/chat-privado';
 import { dateToString } from '../helpers/date.js';
 import { useAuth } from '../composition/useAuth';

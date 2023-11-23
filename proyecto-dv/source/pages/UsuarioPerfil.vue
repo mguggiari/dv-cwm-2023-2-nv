@@ -1,5 +1,4 @@
 <script setup>
-import Loader from '../components/Loader.vue';
 import { useRoute } from 'vue-router';
 import { usuarioPerfil } from '../composition/useUserProfile';
 import LoadingContext from '../components/LoadingContext.vue';

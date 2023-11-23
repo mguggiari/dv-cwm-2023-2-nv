@@ -96,15 +96,14 @@ export async function getReservas(){
         id: doc.id,
         ...doc.data(),
     }));
-    console.log('getReservas', reservas);
+    //console.log('getReservas', reservas);
     
     return reservas;
 }
 
 export async function cancelarReservaById(reservaId){
-    console.log('cancelarReservaById reservaId', reservaId);
+    //console.log('cancelarReservaById reservaId', reservaId);
     const reservaRef = doc(db, "reservas", reservaId);
-    //agregar un campo con el estado de la reserva (cancelada)
     const reservaData = updateDoc(reservaRef, {
         estado: 'cancelada',
         timestampCancelacion: serverTimestamp(),

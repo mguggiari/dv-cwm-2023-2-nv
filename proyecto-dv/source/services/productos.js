@@ -58,3 +58,43 @@ export async function crearProducto(nuevoProducto) {
         throw error; 
     }
 }
+
+export async function actualizarEstadoProducto(id, deshabilitado) {
+    try {
+        const productoRef = doc(db, "productos", id);
+        await updateDoc(productoRef, {
+            deshabilitado: deshabilitado,
+            timestampCancelacion: deshabilitado ? serverTimestamp() : null,
+        });
+        return true;
+    } catch (error) {
+        console.error(`Error al actualizar el estado del producto ${id}:`, error);
+        throw error;
+    }
+}
+
+export async function deshabilitarProducto(id) {
+    try {
+        const productoRef = doc(db, "productos", id);
+        await updateDoc(productoRef, {
+            deshabilitado: true,
+        });
+        return true;
+    } catch (error) {
+        console.error('Error al eliminar un producto:', error);
+        throw error; 
+    }
+}
+
+export async function habilitarProducto(id) {
+    try {
+        const productoRef = doc(db, "productos", id);
+        await updateDoc(productoRef, {
+            deshabilitado: false,
+        });
+        return true;
+    } catch (error) {
+        console.error('Error al eliminar un producto:', error);
+        throw error; 
+    }
+}

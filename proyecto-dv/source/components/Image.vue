@@ -1,19 +1,19 @@
 <script setup>
-defineProps({
-    src: {
-        type: String,
-        required: true,
-    },
-    alt: {
-        type: String,
-        required: true,
-    },
-    default: {
-    },
-    defaultAlt: {
-        type: String,
-    }
-});
+    defineProps({
+        src: {
+            type: String,
+            required: true,
+        },
+        alt: {
+            type: String,
+            required: true,
+        },
+        default: {
+        },
+        defaultAlt: {
+            type: String,
+        }
+    });
 </script>
 
 <template>

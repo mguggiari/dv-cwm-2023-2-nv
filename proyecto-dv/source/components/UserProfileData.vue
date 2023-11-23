@@ -8,6 +8,7 @@ defineProps({
     },
 });
 </script>
+
 <template>
     <div>
         <dl>
@@ -15,7 +16,7 @@ defineProps({
                 Email de usuario: {{ user.email }}
             </dt>
             <dt>
-                Nombre de usuario {{ user.displayName || "Sin nombre" }}
+                Nombre de usuario {{ user.displayName || "Sin nombre de usuario" }}
             </dt>
         </dl>
         <div>

@@ -1,13 +1,13 @@
 <script setup>
-import Loader from '../components/Loader.vue';
+import LoadingContext from '../components/LoadingContext.vue';
 import PrimaryButton from '../components/PrimaryButton.vue';
 import PrimaryTextarea from '../components/PrimaryTextarea.vue';
+import { useRoute } from 'vue-router';
+import { useAuth } from '../composition/useAuth';
+import { onUnmounted, ref, watch } from 'vue';
+import { usuarioPerfil } from '../composition/useUserProfile';
 import { enviarMensajeChatPrivado, guardarMensajeChatPrivado } from '../services/chat-privado';
 import { dateToString } from '../helpers/date.js';
-import { useAuth } from '../composition/useAuth';
-import { usuarioPerfil } from '../composition/useUserProfile';
-import { onUnmounted, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
 
 const route = useRoute();
 const { user: usuarioAutenticado } = useAuth();
@@ -63,8 +63,7 @@ function useChatPrivado(enviaUsuario, recibeUsuario) {
 </script>
 
 <template>
-    <Loader v-if="usuarioCargando"/>
-    <template v-else>
+    <LoadingContext :loading="usuarioCargando">
         <div class="pb-64 m-1.5">
             <div class="max-w-7xl px-4 pt-20 mx-auto text-center sm:text-left ">
                 <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">
@@ -112,5 +111,5 @@ function useChatPrivado(enviaUsuario, recibeUsuario) {
                 <PrimaryButton class="w-4/12 md:w-1/12">Enviar</PrimaryButton>
             </form>
         </div>
-    </template>
+    </LoadingContext>
 </template>

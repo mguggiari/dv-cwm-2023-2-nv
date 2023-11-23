@@ -1,10 +1,10 @@
 <script setup>
-import Loader from '../components/Loader.vue';
+import LoadingContext from '../components/LoadingContext.vue';
 import PrimaryButton from '../components/PrimaryButton.vue';
-import { getProductos } from '../services/productos';
-import { reserveProduct } from '../services/user';
 import { useAuth } from '../composition/useAuth';
 import { onMounted, ref } from 'vue';
+import { getProductos } from '../services/productos';
+import { reserveProduct } from '../services/user';
 
 const { user: usuarioAutenticado } = useAuth();
 const productos = ref([]);
@@ -12,7 +12,6 @@ const productosCargando = ref(true);
 
 onMounted(async () => {
   try {
-    // Cargar productos al montar el componente
     productos.value = await getProductos();
     productosCargando.value = false;
   } catch (error) {
@@ -22,13 +21,10 @@ onMounted(async () => {
 
 async function handleReservar(productoId) {
   try {
-    // Realizar la reserva al hacer clic en el botón "Reservar"
     await reserveProduct(productoId, usuarioAutenticado.value.id);
-    console.log('Producto reservado con éxito!');
-    // Puedes agregar aquí cualquier lógica adicional después de la reserva
+    //console.log('Producto reservado con éxito!');
   } catch (error) {
     console.error('Error al reservar el producto:', error.message);
-    // Maneja el error según sea necesario
   }
 }
 </script>
@@ -44,9 +40,13 @@ async function handleReservar(productoId) {
       </div>
     </div>
     <div class="max-w-7xl pb-20 mx-auto -mt-48">
-      <template v-if="!productosCargando">
+      <LoadingContext :loading="productosCargando">
         <ul class="grid grid-cols-1 gap-16 lg:grid-cols-3 sm:gap-8">
-          <li v-for="producto in productos" :key="producto.id" class="border-0 rounded-none shadow-none card sm:shadow-md sm:rounded-lg">
+          <li 
+            v-for="producto in productos.filter(producto => !producto.deshabilitado)" 
+            :key="producto.id" 
+            class="border-0 rounded-none shadow-none card sm:shadow-md sm:rounded-lg"
+          >
             <div class="flex flex-col justify-between p-6 border-b border-gray-200">
               <h2 class="pb-0 my-2 font-mono text-4xl font-extrabold text-gray-900 md:pb-2">{{ producto.titulo }}</h2>
               <p class="flex align-center items-center mb-1 text-lg font-semibold text-gray-700">
@@ -70,10 +70,7 @@ async function handleReservar(productoId) {
             </div>
           </li>
         </ul>
-      </template>
-      <template v-else>
-        <Loader />
-      </template>
+      </LoadingContext>
     </div>
   </section>
 </template>

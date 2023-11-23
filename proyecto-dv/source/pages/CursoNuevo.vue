@@ -1,13 +1,12 @@
 <script>
 import PrimaryButton from '../components/PrimaryButton.vue';
-import Loader from '../components/Loader.vue';
 import PrimaryInput from '../components/PrimaryInput.vue';
 import PrimaryTextarea from '../components/PrimaryTextarea.vue';
 import { crearProducto } from '../services/productos.js'
 
 export default {
     name: "CursoNuevo",
-    components: { PrimaryButton, Loader, PrimaryTextarea, PrimaryInput },
+    components: { PrimaryButton, PrimaryTextarea, PrimaryInput },
     data() {
         return {
             registroProductoCargando: false,
@@ -24,7 +23,7 @@ export default {
             this.registroProductoCargando = true;
             try {
                 await crearProducto({...this.nuevoProducto});
-                this.$router.push('/panel-admin');
+                this.$router.push('/panel-productos');
             } catch (error) {
                 console.log(error);
             } finally {

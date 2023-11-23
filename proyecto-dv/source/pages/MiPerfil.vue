@@ -242,5 +242,5 @@ async function cancelarReserva(reserva) {
              <PrimaryButton @click="cancelarReserva(reserva.id)">cancelar</PrimaryButton>
          </dl>
      </div>
- </section>
+    </section>
 </template>

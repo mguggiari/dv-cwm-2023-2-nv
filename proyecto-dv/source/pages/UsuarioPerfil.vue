@@ -1,7 +1,7 @@
 <script setup>
+import LoadingContext from '../components/LoadingContext.vue';
 import { useRoute } from 'vue-router';
 import { usuarioPerfil } from '../composition/useUserProfile';
-import LoadingContext from '../components/LoadingContext.vue';
 
 const route = useRoute();
 const { usuario, usuarioCargando } = usuarioPerfil(route.params.id);

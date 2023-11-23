@@ -1,8 +1,8 @@
 <script setup>
+import Modal from '../components/Modal.vue';
+import LoadingContext from '../components/LoadingContext.vue';
 import { ref, onMounted } from 'vue';
 import { getProductos, deshabilitarProducto, habilitarProducto } from '../services/productos';
-import LoadingContext from '../components/LoadingContext.vue';
-import Modal from '../components/Modal.vue';
 
 const productos = ref([]);
 const productosCargando = ref(true);
@@ -108,13 +108,21 @@ onMounted(async () => {
                     </div>
                 </div>
                 <div class="mt-5 flex flex-col lg:ml-4 lg:mt-0">
-                    <router-link :to="`/curso/${producto.id}/editar`" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mb-4">
+                    <router-link :to="`/curso/${producto.id}/editar`" class="inline-flex items-center rounded-md bg-gray-50 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-100 mb-4">
                         <svg class="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                         <path d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z" />
                         </svg>
                         Editar
                     </router-link>
-                    <button @click="abrirModalDeshabilitar(producto.id)" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    <button @click="abrirModalDeshabilitar(producto.id)" 
+                            class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset"
+                            :class="{
+                                'bg-green-50': producto.deshabilitado, 'bg-red-50': !producto.deshabilitado,
+                                'text-green-700': producto.deshabilitado, 'text-red-700': !producto.deshabilitado,
+                                'ring-green-300': producto.deshabilitado, 'ring-red-300': !producto.deshabilitado,
+                                'hover:bg-green-100': producto.deshabilitado, 'hover:bg-red-100': !producto.deshabilitado,
+                            }"
+                    >
                         {{ producto.deshabilitado ? 'Habilitar' : 'Deshabilitar' }}
                     </button>
                 </div>

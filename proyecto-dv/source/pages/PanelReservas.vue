@@ -1,8 +1,8 @@
 <script setup>
-import { ref, onMounted } from 'vue';
 import LoadingContext from '../components/LoadingContext.vue';
+import ProfileImage from '../components/ProfileImage.vue'; 
+import { ref, onMounted } from 'vue';
 import { getReservas } from '../services/user';
-import ProfileImage from '../components/ProfileImage.vue';
 
 const reservas = ref([]);
 const reservasCargando = ref(true);
@@ -20,7 +20,7 @@ onMounted(async () => {
 <template>
     <div class="pb-64">
         <div class="max-w-7xl px-4 pt-20 mx-auto text-center sm:text-left">
-            <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Administrar reservas</h1>
+            <h1 class="mb-6 text-4xl font-bold leading-tight text-blue-950 md:text-4xl lg:text-5xl">Reservas</h1>
         </div>
     </div>
     <LoadingContext :loading="reservasCargando">

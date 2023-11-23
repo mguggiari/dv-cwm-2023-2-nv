@@ -8,6 +8,7 @@ export default {
   },
 };
 </script>
+
 <template>
   <section class="px-4 py-24 mx-auto max-w-7xl">
     <div class="grid items-center w-full grid-cols-1 gap-10 mx-auto md:w-4/5 lg:grid-cols-2 xl:gap-32">
@@ -25,5 +26,5 @@ export default {
         <a href="/cursos" class="bg-blue-100 w-full btn hover:bg-blue-200 text-gray-700 btn-lg sm:w-auto p-3 rounded">Ver cursos</a>
       </div>
     </div>
-</section>
+  </section>
 </template>

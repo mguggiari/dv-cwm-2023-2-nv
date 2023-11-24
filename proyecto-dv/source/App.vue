@@ -1,4 +1,5 @@
 <script setup>
+import NotificationAlerts from './components/NotificationAlerts.vue';
 import { provide, readonly, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { logout } from './services/auth.js';
@@ -6,19 +7,31 @@ import { useAuth } from './composition/useAuth.js';
 import { notificacionSymbol } from './symbols/symbols';
 
 const notificacion = ref({
-    mensaje: null,
-    type: 'success'
+    mensaje: '',
+    type: '',
+    closable: true,
 });
 
-function setNotificacion(data){
-    notificacion.value = data;
+function setNotificacion({ mensaje, type = 'success' }){
+    notificacion.value = {
+        ...notificacion.value,
+        mensaje,
+        type,
+    };
+}
+
+function clearNotificacion() {
+    notificacion.value = {
+        ...notificacion.value,
+        mensaje: '',
+        type: '',
+    };
 }
 
 provide(notificacionSymbol, {
     notificacion: readonly(notificacion),
     setNotificacion,
-    setNotificacionSuccess: mensaje => setNotificacion({ mensaje, type: 'success' }),
-    setNotificacionError: mensaje => setNotificacion({ mensaje, type: 'error' }),
+    clearNotificacion,
 });
 
 const { handleLogout } = useLogout();
@@ -28,6 +41,7 @@ const { mobileMenuOpen, toggleMobileMenu } = useMobileMenu();
 function useLogout(){
     const router = useRouter();
     const handleLogout = () => {
+        setNotificacion({ mensaje: '¡Has cerrado sesión correctamente!', type: 'success' });
         logout();
         router.push('/iniciar-sesion');
     };
@@ -198,12 +212,7 @@ function useAdminMenu(){
         </nav>
     </header>
     <div>
-        <div
-            v-if="notificacion.mensaje != null"
-            class="bg-green-200 text-black text-center py-2 px-4 rounded-md"
-        >
-            {{ notificacion.mensaje }}
-        </div>
+        <NotificationAlerts :data="notificacion" @close="clearNotificacion" />
         <router-view></router-view>
     </div>
     <footer class="flex justify-center h-[100px] items-center text-white bg-blue-950">

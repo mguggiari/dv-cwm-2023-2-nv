@@ -1,6 +1,7 @@
 <script setup>
 import LoadingContext from '../components/LoadingContext.vue';
 import ProfileImage from '../components/ProfileImage.vue'; 
+import Pagination from '../components/Pagination.vue'
 import { ref, onMounted } from 'vue';
 import { getReservas } from '../services/user';
 import { dateToString } from '../helpers/date.js';
@@ -43,9 +44,9 @@ onMounted(async () => {
                     </div>
                     <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
                         <p class="text-sm leading-6 text-gray-900"><span class="text-blue-900">Producto reservado: </span>{{ reserva.productoReservado.titulo }}</p>
-                        <p class="mt-1 text-sm leading-6 text-gray-900" v-if="reserva.estado !== 'cancelada'"><span class="text-blue-900">Estado de reserva: </span>En espera</p>
+                        <p class="mt-1 text-sm leading-6 text-gray-900" v-if="reserva.estado !== 'Cancelada'"><span class="text-blue-900">Estado de reserva: </span>En espera</p>
                         <p class="mt-1 text-sm leading-6 text-gray-900" v-else><span class="text-blue-900">Estado de reserva: </span>{{ reserva.estado }}</p>
-                        <p class="text-sm leading-6 text-gray-900" v-if="reserva.estado !== 'cancelada'"><span class="text-blue-900">Fecha de reserva: </span>{{ dateToString(reserva.timestamp) }}</p>
+                        <p class="text-sm leading-6 text-gray-900" v-if="reserva.estado !== 'Cancelada'"><span class="text-blue-900">Fecha de reserva: </span>{{ dateToString(reserva.timestamp) }}</p>
                         <p class="mt-1 text-sm leading-6 text-gray-900" v-else><span class="text-blue-900">Fecha de reserva cancelada: </span>{{ dateToString(reserva.timestampCancelacion) }}</p>
                     </div>
                 </li>

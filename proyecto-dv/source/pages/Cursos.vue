@@ -2,11 +2,15 @@
 import LoadingContext from '../components/LoadingContext.vue';
 import PrimaryButton from '../components/PrimaryButton.vue';
 import { useAuth } from '../composition/useAuth';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, inject } from 'vue';
 import { getProductos } from '../services/productos';
 import { reserveProduct } from '../services/user';
+import { notificacionSymbol } from "../symbols/symbols";
 
 const { user: usuarioAutenticado } = useAuth();
+
+const { setNotificacion } = inject(notificacionSymbol);
+
 const productos = ref([]);
 const productosCargando = ref(true);
 
@@ -23,8 +27,16 @@ async function handleReservar(productoId) {
   try {
     await reserveProduct(productoId, usuarioAutenticado.value.id);
     //console.log('Producto reservado con éxito!');
+    setNotificacion({
+      mensaje: 'Curso reservado con éxito',
+      type: 'success',
+    });
   } catch (error) {
-    console.error('Error al reservar el producto:', error.message);
+    //console.error('Error al reservar el producto:', error.message);
+    setNotificacion({
+      mensaje: 'Error al reservar producto, aguarde unos segundos y vuelva a intentar, por favor.',
+      type: 'error',
+    });
   }
 }
 </script>

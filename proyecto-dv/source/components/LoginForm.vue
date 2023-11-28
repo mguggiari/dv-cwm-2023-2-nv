@@ -45,35 +45,35 @@ const iniciarSesion = async () => {
 </script>
 
 <template>
-     <form action="#" @submit.prevent="iniciarSesion">
-        <div class="mb-4">
-          <label for="email" class="block font-bold mb-2">Email</label>
-          <PrimaryInput
-            :disabled="inicioSesionCargando"
-            type="email"
-            id="email"
-            v-model="form.email"
+  <form action="#" @submit.prevent="iniciarSesion">
+    <div class="mb-4">
+      <label for="email" class="block font-bold mb-2">Email</label>
+      <PrimaryInput
+        :disabled="inicioSesionCargando"
+        type="email"
+        id="email"
+        v-model="form.email"
+      />
+    </div>
+    <div class="mb-4">
+      <label for="password" class="block font-bold mb-2">Contraseña</label>
+      <div class="relative">
+        <input
+          :type="showPassword ? 'text' : 'password'"
+          id="password"
+          v-model="form.password"
+          class="w-full px-4 py-2 border rounded-md"
+        >
+        <span
+          class="absolute right-3 top-3 cursor-pointer"
+          @click="showPassword = !showPassword"
+        >
+          <font-awesome-icon
+            :icon="showPassword ? ['fas', 'eye'] : ['fas', 'eye-slash']"
           />
-        </div>
-        <div class="mb-4">
-          <label for="password" class="block font-bold mb-2">Contraseña</label>
-          <div class="relative">
-            <input
-              :type="showPassword ? 'text' : 'password'"
-              id="password"
-              v-model="form.password"
-              class="w-full px-4 py-2 border rounded-md"
-            >
-            <span
-              class="absolute right-3 top-3 cursor-pointer"
-              @click="showPassword = !showPassword"
-            >
-              <font-awesome-icon
-                :icon="showPassword ? ['fas', 'eye'] : ['fas', 'eye-slash']"
-              />
-            </span>
-          </div>
-        </div>
-        <PrimaryButton :loading="inicioSesionCargando" class="w-full">Iniciar Sesión</PrimaryButton>
-      </form>
+        </span>
+      </div>
+    </div>
+    <PrimaryButton :loading="inicioSesionCargando" class="w-full">Iniciar Sesión</PrimaryButton>
+  </form>
 </template>

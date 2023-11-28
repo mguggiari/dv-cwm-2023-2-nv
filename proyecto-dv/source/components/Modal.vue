@@ -1,6 +1,4 @@
 <script setup>
-import { defineProps, defineEmits } from 'vue';
-
 const { title, content, buttonText, cancelFunction, modalClass, icon } = defineProps(['title', 'content', 'buttonText', 'cancelFunction', 'modalClass', 'icon']);
 const emit = defineEmits();
 </script>

@@ -3,10 +3,12 @@ import PrimaryButton from '../components/PrimaryButton.vue';
 import PrimaryInput from '../components/PrimaryInput.vue';
 import PrimaryTextarea from '../components/PrimaryTextarea.vue';
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 import { crearProducto } from '../services/productos.js';
+import { notificacionSymbol } from "../symbols/symbols";
 
 const router = useRouter();
+const { setNotificacion } = inject(notificacionSymbol);
 
 const registroProductoCargando = ref(false);
 const nuevoProducto = ref({
@@ -21,8 +23,16 @@ const handleCrearProducto = async () => {
     try {
         await crearProducto({ ...nuevoProducto.value });
         router.push('/panel-productos');
+        setNotificacion({
+            mensaje: 'Curso creado con éxito',
+            type: 'success',
+        });
     } catch (error) {
         console.error(error);
+        setNotificacion({
+            mensaje: 'Error al crear curso, aguarde unos segundos y vuelva a intentar, por favor.',
+            type: 'error',
+        });
     } finally {
         registroProductoCargando.value = false;
     }

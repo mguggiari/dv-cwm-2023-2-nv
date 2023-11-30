@@ -109,7 +109,7 @@ async function confirmarCancelarReserva() {
                             <dd class="text-red-800 p-2">Reserva cancelada</dd>
                         </div>
                     </dl>
-            </div>
+                </div>
             </div>
         </LoadingContext>
 

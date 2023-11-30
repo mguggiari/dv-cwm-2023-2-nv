@@ -69,7 +69,10 @@ export default {
                             v-model="form.descripcion"
                         ></PrimaryTextarea>
                     </div>
-                    <PrimaryButton class="w-full mt-4">Editar</PrimaryButton>
+                    <div class="flex justify-between items-center">
+                        <router-link class="w-full mt-4 text-center bg-red-50 text-red-700 p-2 rounded hover:bg-red-100" :to="'/panel-productos'">Cancelar</router-link>
+                        <PrimaryButton class="w-full mt-4 ms-4">Editar</PrimaryButton>
+                    </div>
                 </form>
             </div>
         </div>

@@ -30,7 +30,7 @@ const handleCrearProducto = async () => {
     } catch (error) {
         console.error(error);
         setNotificacion({
-            mensaje: 'Error al crear curso, aguarde unos segundos y vuelva a intentar, por favor.',
+            mensaje: 'Error al crear curso, aguarde unos segundos y vuelva a intentar, por favor',
             type: 'error',
         });
     } finally {

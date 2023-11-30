@@ -54,12 +54,12 @@ const handleSubmit = async () => {
     await register({ ...nuevoUsuario.value });
     router.push('/');
     setNotificacion({
-      mensaje: 'Perfil editado con éxito',
+      mensaje: 'Perfil creado con éxito',
       type: 'success',
     });
   } catch (error) {
     setNotificacion({
-      mensaje: error,
+      mensaje: 'Sucedio un error, aguardá un segundo y volvé a intentarlo',
       type: 'error',
     });
   }

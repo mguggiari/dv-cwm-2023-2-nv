@@ -13,6 +13,16 @@ const cargarProductos = async () => {
     try {
         const productosData = await getProductos();
         productos.value = productosData;
+        productos.value.sort((a, b) => {
+            if (a.deshabilitado && !b.deshabilitado) {
+                return 1;
+            }
+            if (!a.deshabilitado && b.deshabilitado) {
+                return -1;
+            }
+            return 0;
+        });
+        console.log("Productos:", productosData)
     } catch (error) {
         console.error("Error al obtener productos:", error);
     } finally {

@@ -17,6 +17,7 @@ const productosCargando = ref(true);
 onMounted(async () => {
   try {
     productos.value = await getProductos();
+    productos.value.sort((a, b) => a.precio - b.precio);
     productosCargando.value = false;
   } catch (error) {
     console.error('Error al obtener productos:', error);

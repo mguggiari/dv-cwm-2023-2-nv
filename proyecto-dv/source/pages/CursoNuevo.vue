@@ -1,36 +1,31 @@
-<script>
+<script setup>
 import PrimaryButton from '../components/PrimaryButton.vue';
 import PrimaryInput from '../components/PrimaryInput.vue';
 import PrimaryTextarea from '../components/PrimaryTextarea.vue';
-import { crearProducto } from '../services/productos.js'
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
+import { crearProducto } from '../services/productos.js';
 
-export default {
-    name: "CursoNuevo",
-    components: { PrimaryButton, PrimaryTextarea, PrimaryInput },
-    data() {
-        return {
-            registroProductoCargando: false,
-            nuevoProducto: {
-                titulo: '',
-                duracion: '',
-                precio: '',
-                descripcion: '',
-            },
-        };
-    },
-    methods: {
-        async handleCrearProducto() {
-            this.registroProductoCargando = true;
-            try {
-                await crearProducto({...this.nuevoProducto});
-                this.$router.push('/panel-productos');
-            } catch (error) {
-                console.log(error);
-            } finally {
-                this.registroProductoCargando = false;
-            }
-        }
-    },
+const router = useRouter();
+
+const registroProductoCargando = ref(false);
+const nuevoProducto = ref({
+    titulo: '',
+    duracion: '',
+    precio: '',
+    descripcion: '',
+});
+
+const handleCrearProducto = async () => {
+    registroProductoCargando.value = true;
+    try {
+        await crearProducto({ ...nuevoProducto.value });
+        router.push('/panel-productos');
+    } catch (error) {
+        console.error(error);
+    } finally {
+        registroProductoCargando.value = false;
+    }
 };
 </script>
 

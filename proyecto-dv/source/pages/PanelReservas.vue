@@ -1,7 +1,6 @@
 <script setup>
 import LoadingContext from '../components/LoadingContext.vue';
 import ProfileImage from '../components/ProfileImage.vue'; 
-import Pagination from '../components/Pagination.vue'
 import { ref, onMounted } from 'vue';
 import { getReservas } from '../services/user';
 import { dateToString } from '../helpers/date.js';
